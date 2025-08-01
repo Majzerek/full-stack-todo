@@ -1,2 +1,2 @@
-export * from "./NotFoundPage"
-export * from "./Dashboard"
+export * from "./NotFoundPage/NotFoundPage"
+export * from "./Dashboard/Dashboard"

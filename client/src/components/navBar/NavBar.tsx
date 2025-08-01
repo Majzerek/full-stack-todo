@@ -1,21 +1,23 @@
-'use client'
 import { LogOut, Moon, Settings, Sun, User } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
-
-
-import { useTheme } from "@/context/themeProvider"
 import { Link } from "react-router-dom"
-
+import { useTheme } from "@/context"
 
 const Navbar = () => {
-  const {setTheme} = useTheme();
+
+  const { setTheme } = useTheme();
+
   return (
-    <nav className="p-4 flex items-center justify-between">
-  
+    <nav className="p-4 flex items-center justify-between bg-sidebar">
       <div className="flex items-center gap-4">
-        <Link to={'/'}>Dashboard</Link>
+        <span className="sm:mr-2 md:mr-20">TodoApp</span>
+        <Link to={'/'} className=" hidden sm:hidden md:block" >Dashboard</Link>
+        <Link to={'/'} className="hidden sm:hidden md:block" >Dashboard</Link>
+        <Link to={'/'}  className="hidden sm:hidden md:block">Dashboard</Link>
+      </div>
+      <div className="flex items-center gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
@@ -39,7 +41,7 @@ const Navbar = () => {
         <DropdownMenu >
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src={'https://avatars.githubusercontent.com/u/1486366'} />
+              <AvatarImage src={'https://avatars.githubusercontent.com/u/106928059?v=4'} />
               <AvatarFallback></AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
@@ -54,14 +56,14 @@ const Navbar = () => {
               <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
               Settings
             </DropdownMenuItem>
-            <DropdownMenuItem variant="destructive">
-              <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />
-              Logout
-            </DropdownMenuItem>
+          
           </DropdownMenuContent>
         </DropdownMenu>
+        <Button variant={'destructive'} size={"icon"}><LogOut /></Button>
       </div>
+    
     </nav>
+   
   )
 }
 

@@ -6,3 +6,5 @@ export type TodosType = {
   createAt: Date;
   userDate: Date;
 }
+
+export type FormDataType = Omit<TodosType, 'id' | 'createAt'>

@@ -9,9 +9,14 @@ export const router = createBrowserRouter([
     path: "*",
     element: <NotFoundPage />,
   },
-  {
-    path: "/",
-    element: <Dashboard />
+ {
+        path: "/",
+        element: <NavbarWrapper />,
+        children: [
+          {
+            path: "/",
+            element: <Dashboard />
+          },]
   },
   // {
   //   path: "/",
