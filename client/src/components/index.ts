@@ -8,6 +8,11 @@ export * from "./ui/calendar"
 export * from "./ui/label"
 export * from "./ui/popover"
 export * from "./ui/select"
+export * from "./ui/alert"
+export * from "./ui/badge"
+export * from "./ui/dataPicker"
+export * from "./ui/popover"
+export * from "./ui/textarea"
 // export * from "./ui/"
 
 //component

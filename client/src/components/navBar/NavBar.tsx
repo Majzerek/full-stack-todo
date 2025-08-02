@@ -10,7 +10,7 @@ const Navbar = () => {
   const { setTheme } = useTheme();
 
   return (
-    <nav className="p-4 flex items-center justify-between bg-sidebar">
+    <nav className="p-2 flex items-center justify-between bg-sidebar w-full fixed z-10 border-b-2">
       <div className="flex items-center gap-4">
         <span className="sm:mr-2 md:mr-20">TodoApp</span>
         <Link to={'/'} className=" hidden sm:hidden md:block" >Dashboard</Link>

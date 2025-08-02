@@ -1,2 +1,2 @@
-export * from './MainProvider'
+export * from './mainProvider'
 export * from './themeProvider'
