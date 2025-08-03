@@ -7,6 +7,7 @@ export type UserDbType = {
     email: string,
     phoneNumber?: string,
     role: string,
+    status: string
     age?:string,
     joined:string,
     password: string

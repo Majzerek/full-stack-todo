@@ -25,11 +25,11 @@ export function DataPicker({ control, name }: DataPickerProps) {
   });
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild >
         <Button
           variant="outline"
           data-empty={!date}
-          className="data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal"
+          className="data-[empty=true]:text-muted-foreground justify-start text-left font-normal w-full"
           
         >
           <CalendarIcon />
@@ -45,6 +45,7 @@ export function DataPicker({ control, name }: DataPickerProps) {
             onChange(selectedDate);
           }}
           id={name}
+          
         />
       </PopoverContent>
     </Popover>

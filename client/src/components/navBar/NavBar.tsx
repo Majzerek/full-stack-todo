@@ -2,20 +2,32 @@ import { LogOut, Moon, Settings, Sun, User } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useTheme } from "@/context"
+import { ITEMS_NAV } from "@/utils"
+import { NavDropdown } from "./navDropdown"
+
+
+
 
 const Navbar = () => {
 
   const { setTheme } = useTheme();
+  const href = useLocation()
 
+
+
+  console.log("POS: ", href)
   return (
     <nav className="p-2 flex items-center justify-between bg-sidebar w-full fixed z-10 border-b-2">
       <div className="flex items-center gap-4">
-        <span className="sm:mr-2 md:mr-20">TodoApp</span>
-        <Link to={'/'} className=" hidden sm:hidden md:block" >Dashboard</Link>
-        <Link to={'/'} className="hidden sm:hidden md:block" >Dashboard</Link>
-        <Link to={'/'}  className="hidden sm:hidden md:block">Dashboard</Link>
+        <span className="mr-2 ">TodoApp</span>
+
+        {ITEMS_NAV.map((item) => (
+          <Link key={item.id} to={item.url} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
+        ))}
+        <NavDropdown />
+        
       </div>
       <div className="flex items-center gap-4">
         <DropdownMenu>
@@ -56,15 +68,17 @@ const Navbar = () => {
               <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
               Settings
             </DropdownMenuItem>
-          
+
           </DropdownMenuContent>
         </DropdownMenu>
         <Button variant={'destructive'} size={"icon"}><LogOut /></Button>
       </div>
-    
+
     </nav>
-   
+
   )
 }
 
 export default Navbar
+
+

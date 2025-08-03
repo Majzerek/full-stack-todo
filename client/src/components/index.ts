@@ -18,4 +18,5 @@ export * from "./ui/textarea"
 //component
 export * from './navBar/NavBar'
 export * from './navBar/NavBarWrapper'
-export * from '../pages/Dashboard/components/TodoForm'
+export * from './wrapper'
+

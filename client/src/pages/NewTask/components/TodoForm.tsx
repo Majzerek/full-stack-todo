@@ -46,7 +46,7 @@ export const TodoForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-center gap-4 transition-all w-100 md:w-180 lg:w-280 p-5 bg-secondary rounded-xl shadow-md shadow-sidebar-primary'>
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-center gap-4 transition-all w-100 md:w-180 lg:w-280 p-5 bg-secondary rounded-xl shadow-md shadow-sidebar-primary '>
       
       <Label htmlFor='todoTitle'>Title:</Label>
       <Input type='text' id='todoTitle' placeholder='Title for task' control={control} name={'title'} />
@@ -71,13 +71,13 @@ export const TodoForm = () => {
         ))}
       </div>
       {errors.hashTag && <small className='text-destructive text-[.9rem]'>{errors.hashTag.message}</small>}
-      <Button  type="button" onClick={() => append("")}>Add Hashtag</Button>
+      <Button className='w-50 self-center'  type="button" onClick={() => append("")}>Add Hashtag</Button>
    
-      <Label htmlFor='userDate'>Time to do it:</Label>
-      <DataPicker control={control} name={'userDate'} />
+      <Label htmlFor='userDate'>To When:</Label>
+      <DataPicker control={control} name={'userDate'}/>
       {errors && <small className='text-destructive text-[.9rem]'>{errors.userDate?.message}</small>}
 
-      <Button type='submit' >save</Button>
+      <Button className='w-50 self-center' type='submit' >save</Button>
     </form>
   )
 }

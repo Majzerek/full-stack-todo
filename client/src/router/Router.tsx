@@ -1,5 +1,5 @@
 import { NavbarWrapper } from "@/components";
-import { Dashboard, NotFoundPage } from "@/pages";
+import { Dashboard, NewTask, NotFoundPage } from "@/pages";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -16,6 +16,10 @@ export const router = createBrowserRouter([
           {
             path: "/",
             element: <Dashboard />
+          },
+         {
+            path: "/add-task",
+            element: <NewTask />
           },]
   },
   // {
