@@ -2,7 +2,7 @@ import type { FormDataType } from '@/types/todosType';
 import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup';
-import { Button, DataPicker, Input, Label, Textarea } from '@/components';
+import { Button, DataPicker, ErrorMsg, Input, Label, Textarea } from '@/components';
 
 
 
@@ -50,11 +50,12 @@ export const TodoForm = () => {
       
       <Label htmlFor='todoTitle'>Title:</Label>
       <Input type='text' id='todoTitle' placeholder='Title for task' control={control} name={'title'} />
-      {errors.title && <small className='text-destructive text-[.9rem]'>{errors.title?.message}</small>}
+      <ErrorMsg bool={errors.title} message={errors.title?.message} />
+
 
        <Label htmlFor='todoDescription'>Description:</Label>
       <Textarea placeholder='Description for task' control={control} name={'description'} maxLength={121} className='resize-none overflow-auto h-25 px-2' />
-      {errors.description && <small className='text-destructive text-[.9rem]'>{errors.description?.message}</small>}
+      <ErrorMsg bool={errors.description} message={errors.description?.message} />
 
       <div className='flex flex-col gap-1'>
         <label htmlFor='hashTag'>Hashtags:</label>
@@ -70,12 +71,14 @@ export const TodoForm = () => {
           </div>
         ))}
       </div>
-      {errors.hashTag && <small className='text-destructive text-[.9rem]'>{errors.hashTag.message}</small>}
+      <ErrorMsg bool={errors.hashTag} message={errors.hashTag?.message} />
+
       <Button className='w-50 self-center'  type="button" onClick={() => append("")}>Add Hashtag</Button>
    
       <Label htmlFor='userDate'>To When:</Label>
       <DataPicker control={control} name={'userDate'}/>
-      {errors && <small className='text-destructive text-[.9rem]'>{errors.userDate?.message}</small>}
+      <ErrorMsg bool={errors.userDate} message={errors.userDate?.message} />
+
 
       <Button className='w-50 self-center' type='submit' >save</Button>
     </form>

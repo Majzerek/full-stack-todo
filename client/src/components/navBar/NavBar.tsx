@@ -3,21 +3,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
 import { Link, useLocation } from "react-router-dom"
-import { useTheme } from "@/context"
+import { useAuthContext, useTheme } from "@/context"
 import { ITEMS_NAV } from "@/utils"
 import { NavDropdown } from "./navDropdown"
-
-
 
 
 const Navbar = () => {
 
   const { setTheme } = useTheme();
   const href = useLocation()
+  const { logout } = useAuthContext();
 
-
-
-  console.log("POS: ", href)
   return (
     <nav className="p-2 flex items-center justify-between bg-sidebar w-full fixed z-10 border-b-2">
       <div className="flex items-center gap-4">
@@ -27,7 +23,7 @@ const Navbar = () => {
           <Link key={item.id} to={item.url} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
         ))}
         <NavDropdown />
-        
+
       </div>
       <div className="flex items-center gap-4">
         <DropdownMenu>
@@ -71,7 +67,7 @@ const Navbar = () => {
 
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button variant={'destructive'} size={"icon"}><LogOut /></Button>
+        <Button variant={'destructive'} size={"icon"} onClick={() => logout()}><LogOut /></Button>
       </div>
 
     </nav>

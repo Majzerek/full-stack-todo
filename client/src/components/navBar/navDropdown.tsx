@@ -7,12 +7,15 @@ import { Menu } from "lucide-react"
 export const NavDropdown = () => {
 
   const position = useLocation();
-
+ 
   return (
     <div className="block sm:hidden">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size={'icon'} ><Menu /></Button>
+          <Button variant="outline" size={'icon'}>
+            <Menu className="h-[1.2rem] w-[1.2rem] scale-100"/>
+            <span className="sr-only">Mobile Navigation</span>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>Position</DropdownMenuLabel>
