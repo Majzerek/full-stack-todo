@@ -43,13 +43,16 @@ export const loginUser = async (req:Request, res:Response) => {
     const db = await connectToDatabase();
     const usersCollection = db.collection<UserDbType>('users');
     const user = await usersCollection.findOne({ email: req.body.email });
+
     if (!user) {
       return res.status(404).send({ message: 'User not found' });
     }
+
     const passwordMatch = await compare(req.body.password, user.password);
     if (!passwordMatch) {
       return res.status(401).send({ message: 'Wrong credentials' });
     }
+    
     if (user.status === StatusEnum.DECLINED) {
       return res.status(403).send({ message: 'Account has been blocked' });
     }

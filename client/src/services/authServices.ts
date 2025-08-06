@@ -1,20 +1,38 @@
-// temp
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
+
 export const setToken = (token: string) => {
-  localStorage.setItem("token", token);
+  const expires = new Date();
+  expires.setDate(expires.getDate() + 7); // 7 days from now
+  
+  cookies.set("jwt_authorization", token, {
+    expires
+  });
 };
 
 export const getToken = (): string | null => {
-  return localStorage.getItem("token");
+  return cookies.get('jwt_authorization');
 };
+export const setUserId = (userID:string) => {
+const expires = new Date();
+  expires.setDate(expires.getDate() + 7); // 7 days from now
+  
+  cookies.set("userID", userID, {
+    expires
+  });
+};
+
 export const getUserId = ():string | null => {
-  return localStorage.getItem("userId")
+  return cookies.get('userID')
 }
+
 export const getUserName = ():string | null => {
-  return localStorage.getItem("userName")
+  return localStorage.getItem('userName')
 }
 export const removeToken = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userId");
-  localStorage.removeItem("userName")
-  localStorage.removeItem("userStatus")
+  cookies.remove('jwt_authorization');
+  cookies.remove("userID");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("userStatus");
 };

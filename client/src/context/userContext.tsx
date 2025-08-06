@@ -11,7 +11,7 @@ const UserContext = createContext<UserContextType | null>(null);
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
-  const userName = getUserName() || 'User';
+  const userName = getUserName() || '';
   
 
   const VALUES = {

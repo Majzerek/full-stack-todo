@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 
-
 type LoginTypes = {
   email: string,
   password: string,
@@ -62,10 +61,10 @@ export const Login = () => {
   }
 
   return (
-  <div className="w-screen h-screen flex flex-col justify-start sm:justify-center items-center">
+  <div className="w-screen h-screen flex flex-col justify-start sm:justify-center items-center ">
  
       <h1 className="text-3xl mb-5 text-center">Welcome in App Todo </h1>
-      <div className=" border-2 p-5 rounded-2xl w-[300px]  m-2 sm:m-15 ">
+      <div className=" border-2 p-5 rounded-2xl w-[300px]  m-2 sm:m-15">
         <h2 className="text-xl mb-5 text-center">Login</h2>
 
         <form className="flex flex-col gap-2 " onSubmit={handleSubmit(onSubmit)}>

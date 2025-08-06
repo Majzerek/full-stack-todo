@@ -5,7 +5,7 @@ type ErrorsMsgTypee = {
   message: string | undefined,
   bool: FieldError | Merge<FieldError, (FieldError | undefined)[]> | undefined,
   className?: string,
-} & React.ComponentProps<'small'>
+} & React.ComponentProps<'small'>;
 
 export const ErrorMsg = ({bool,message,className, ...props}:ErrorsMsgTypee) => {
   return (
@@ -13,4 +13,4 @@ export const ErrorMsg = ({bool,message,className, ...props}:ErrorsMsgTypee) => {
     {bool && <small {...props} className={cn('text-destructive text-[.9rem] h-fit',className)} >{message}</small>  }
     </>
   )
-}
+};

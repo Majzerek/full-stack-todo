@@ -131,7 +131,7 @@ export const Register = () => {
 
         </form>
       </div>
-          <Button variant={'link'}><Link to={'/login'}>Back</Link></Button>
+          <Link to={'/login'} className='text-red-400 transition-colors hover:text-blue-500 uppercase text-2xl'>back</Link>
     </div>
   )
 }

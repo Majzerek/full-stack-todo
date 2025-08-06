@@ -1,4 +1,4 @@
-import { removeToken, setToken } from "@/services/authServices";
+import { removeToken, setToken, setUserId } from "@/services/authServices";
 import axios from "axios";
 import { createContext, useContext, useEffect, useState, type FC, type ReactNode } from "react";
 
@@ -16,13 +16,11 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const login = (data: Record<string, string>) => {
 
-    //temp
-    localStorage.setItem("userId", data.userId);
+    setUserId(data.userId);
     localStorage.setItem("userName", data.userName);
     localStorage.setItem("userStatus", data.userStatus);
     setToken(data.token);
     setIsLogin(true);
-
   };
 
   const logout = () => {

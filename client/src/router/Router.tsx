@@ -1,5 +1,5 @@
 import { NavbarWrapper } from "@/components";
-import { Dashboard, Login, NewTask, NotFoundPage, Register } from "@/pages";
+import { Dashboard, Login, NewTask, NotFoundPage, Register, WaitForApprove } from "@/pages";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -52,6 +52,10 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />
+  },
+  {
+    path: "/wait-for-approve",
+    element: <WaitForApprove />
   },
 
 ]);

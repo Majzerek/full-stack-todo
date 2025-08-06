@@ -4,4 +4,5 @@ export * from "./NewTask/NewTask"
 export * from './NewTask/components/TodoForm'
 export * from "./Register/Register"
 export * from "./Login/Login"
+export * from "./WaitForApprove/WaitForApprove"
 

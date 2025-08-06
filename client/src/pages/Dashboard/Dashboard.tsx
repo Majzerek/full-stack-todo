@@ -1,8 +1,8 @@
 import { Wrapper } from "@/components"
-import { useUserContext } from "@/context";
+import { getUserName } from "@/services/authServices";
 
 export const Dashboard = () => {
-  const { userName } = useUserContext();
+  const userName = getUserName();
   
   return (
     <Wrapper>
