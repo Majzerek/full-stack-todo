@@ -2,7 +2,7 @@ import { LogOut, Moon, Settings, Sun, User } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useAuthContext, useTheme } from "@/context"
 import { ITEMS_NAV } from "@/utils"
 import { NavDropdown } from "./navDropdown"
@@ -13,7 +13,12 @@ const Navbar = () => {
   const { setTheme } = useTheme();
   const href = useLocation()
   const { logout } = useAuthContext();
+  const navigate = useNavigate();
 
+  const DoLogout = () => {
+    logout();
+    navigate('/login')
+  }
   return (
     <nav className="p-2 flex items-center justify-between bg-sidebar w-full fixed z-10 border-b-2">
       <div className="flex items-center gap-4">
@@ -67,7 +72,7 @@ const Navbar = () => {
 
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button variant={'destructive'} size={"icon"} onClick={() => logout()}><LogOut /></Button>
+        <Button variant={'destructive'} size={"icon"} onClick={DoLogout}><LogOut /></Button>
       </div>
 
     </nav>

@@ -54,10 +54,10 @@ export const Login = () => {
       // eslint-disable-next-line consistent-return
       .catch((err) => {
         if (err.response?.status === 403) {
-          return showErrorAlert("Account was blocked")
+          return showErrorAlert(err.response.data.message)
         }
         setLoading(false)
-        showErrorAlert("Something went wrong")
+        showErrorAlert(err.response.data.message)
         console.error("ERR", err)
       })
   }
@@ -77,14 +77,14 @@ export const Login = () => {
             <ErrorMsg bool={errors.email} message={errors.email?.message} />
           </div>
 
-          <div className="flex flex-col gap-2 relative h-30">
+          <div className="flex flex-col gap-2 relative h-max">
             <Label htmlFor="password">Password:</Label>
             <Input type={showPassword ? 'text' : 'password'} control={control} title="password" name="password" id="password" placeholder="Password" className="w-full relative" />
-            <div className="absolute w-5 h-5 bottom-[45%] right-[2%] translate-y-[-45%] translate-x-[-50%] cursor-pointer" onClick={() => setShowPassword((prev) => !prev)} >
-              {showPassword ? <Eye /> : <EyeClosed />}
+            <div className="absolute w-5 h-5 bottom-[2%] right-[2%] translate-y-[-50%] translate-x-[-50%] cursor-pointer" onClick={() => setShowPassword((prev) => !prev)} >
+              {showPassword ? <Eye className='h-5 w-5'/> : <EyeClosed className='h-5 w-5'/>}
             </div>
-            <ErrorMsg bool={errors.password} message={errors.password?.message} />
           </div>
+            <ErrorMsg bool={errors.password} message={errors.password?.message} />
 
 
           <div className="col-span-1 sm:col-span-2 flex items-center justify-center">

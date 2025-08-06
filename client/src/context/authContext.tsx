@@ -1,5 +1,6 @@
 import { removeToken, setToken } from "@/services/authServices";
 import { createContext, useContext, useState, type FC, type ReactNode } from "react";
+import { useNavigate } from "react-router";
 
 type AuthContextType = {
   isLogin: boolean;
@@ -12,7 +13,6 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
-
   const login = (data: Record<string, string>) => {
     //temp
     localStorage.setItem("userId", data.userId)
@@ -25,6 +25,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const logout = () => {
     removeToken();
     setIsLogin(false);
+   
   };
 
   const VALUE = {

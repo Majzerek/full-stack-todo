@@ -10,7 +10,7 @@ type ErrorsMsgTypee = {
 export const ErrorMsg = ({bool,message,className, ...props}:ErrorsMsgTypee) => {
   return (
     <>
-    {bool && <small {...props} className={cn('text-destructive text-[.9rem]',className)} >{message}</small>  }
+    {bool && <small {...props} className={cn('text-destructive text-[.9rem] h-fit',className)} >{message}</small>  }
     </>
   )
 }
