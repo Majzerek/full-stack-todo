@@ -1,6 +1,7 @@
 import { removeToken, setToken } from "@/services/authServices";
-import { createContext, useContext, useState, type FC, type ReactNode } from "react";
-import { useNavigate } from "react-router";
+import axios from "axios";
+import { createContext, useContext, useEffect, useState, type FC, type ReactNode } from "react";
+
 
 type AuthContextType = {
   isLogin: boolean;
@@ -14,21 +15,31 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const login = (data: Record<string, string>) => {
+
     //temp
-    localStorage.setItem("userId", data.userId)
-    localStorage.setItem("userName", data.userName)
-    localStorage.setItem("userStatus", data.userStatus)
+    localStorage.setItem("userId", data.userId);
+    localStorage.setItem("userName", data.userName);
+    localStorage.setItem("userStatus", data.userStatus);
     setToken(data.token);
-    setIsLogin(true)
+    setIsLogin(true);
+
   };
 
   const logout = () => {
     removeToken();
     setIsLogin(false);
-   
-  };
 
-  const VALUE = {
+  };
+  useEffect(() => {
+    const value = {isLogin}
+    const send = async () => {
+      await axios.post('http://localhost:4040/isLogin', value)
+        .then(() => { })
+        .catch((err) => console.error(err))
+    }
+    send();
+  }, [isLogin])
+  const VALUES = {
     isLogin,
     setIsLogin,
     login,
@@ -36,7 +47,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={VALUE}>
+    <AuthContext.Provider value={VALUES}>
       {children}
     </AuthContext.Provider>
   )
@@ -45,8 +56,8 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
-  if(!context) {
-    throw new Error("useAuthContext mustbe used within AuthProvider")
+  if (!context) {
+    throw new Error("useAuthContext must be used within AuthProvider")
   }
   return context;
 }

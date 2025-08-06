@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Button, ErrorMsg, Input, Label, Loader } from "@/components";
 import { Eye, EyeClosed } from "lucide-react";
 import { useAlertContext } from "@/context/alertContext";
+import { Link } from "react-router-dom";
 
 
 const validationSchema: yup.ObjectSchema<RegisterFormType> = yup.object().shape({
@@ -108,7 +109,7 @@ export const Register = () => {
           <div className="flex flex-col gap-2 relative h-30">
             <Label htmlFor="password">Password:</Label>
             <Input type={show.password ? 'text' : 'password'} control={control} title="password" name="password" id="password" placeholder="Password" className="w-full"  />
-            <div className="absolute bottom-[55%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, password: !prev.password }))} >
+            <div className="absolute bottom-[60%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, password: !prev.password }))} >
               {show.password ? <Eye /> : <EyeClosed />}
             </div>
             <ErrorMsg bool={errors.password} message={errors.password?.message} />
@@ -117,7 +118,7 @@ export const Register = () => {
           <div className="flex flex-col gap-2 relative h-30">
             <Label htmlFor="confirmPassword">Confirm Password:</Label>
             <Input type={show.confirm ? 'text' : 'password'} control={control} title="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" className="w-full" />
-            <div className="absolute bottom-[55%] right-5 translate-y-[-50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, confirm: !prev.confirm }))} >
+            <div className="absolute bottom-[60%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, confirm: !prev.confirm }))} >
               {show.confirm ? <Eye /> : <EyeClosed />}
             </div>
             <ErrorMsg bool={errors.confirmPassword} message={errors.confirmPassword?.message} />
@@ -129,8 +130,8 @@ export const Register = () => {
           </div>
 
         </form>
-
       </div>
+          <Button variant={'link'}><Link to={'/login'}>Back</Link></Button>
     </div>
   )
 }

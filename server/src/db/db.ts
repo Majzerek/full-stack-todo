@@ -1,6 +1,9 @@
 import { MongoClient, Db } from "mongodb";
+import dotenv from "dotenv";
 
-const uri = process.env.MONGO_URI;
+dotenv.config();
+
+const uri = process.env.MONGO_URI!;
 
 if (!uri) {
   throw new Error("MONGO_URI environment variable is not defined.");

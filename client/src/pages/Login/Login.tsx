@@ -51,7 +51,6 @@ export const Login = () => {
         showSuccessAlert(`Welcome ${res.data.userName}`)
         navigate("/")
       })
-      // eslint-disable-next-line consistent-return
       .catch((err) => {
         if (err.response?.status === 403) {
           return showErrorAlert(err.response.data.message)

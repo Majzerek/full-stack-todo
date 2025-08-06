@@ -13,6 +13,7 @@ const Navbar = () => {
   const { setTheme } = useTheme();
   const href = useLocation()
   const { logout } = useAuthContext();
+ 
   const navigate = useNavigate();
 
   const DoLogout = () => {
@@ -54,7 +55,7 @@ const Navbar = () => {
         <DropdownMenu >
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src={'https://avatars.githubusercontent.com/u/106928059?v=4'} />
+              <AvatarImage src={'https://plus.unsplash.com/premium_photo-1754254828698-12c96f89d7a2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} />
               <AvatarFallback></AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
