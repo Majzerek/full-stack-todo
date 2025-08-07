@@ -12,6 +12,8 @@ export * from "./ui/badge";
 export * from "./ui/dataPicker";
 export * from "./ui/popover";
 export * from "./ui/textarea";
+export * from "./ui/tabs";
+export * from "./ui/card";
 // export * from "./ui/"
 
 //component
@@ -20,4 +22,5 @@ export * from './navBar/NavBarWrapper';
 export * from './wrapper';
 export * from './loader/Loader';
 export * from "./errorMsg";
+// export * from './cardTabs/CardTabs'
 

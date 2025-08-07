@@ -25,6 +25,7 @@ const validationSchema: yup.ObjectSchema<RegisterFormType> = yup.object().shape(
 
   confirmPassword: yup.string().required("Please confirm your password").oneOf([yup.ref("password"), ""], "Passwords don't match"),
   role: yup.string().default('USER'),
+
 });
 
 export const Register = () => {

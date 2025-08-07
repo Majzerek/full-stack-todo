@@ -35,7 +35,7 @@ const serverStart = async () => {
 
     app.use('/', routerAuth);
     
-    app.use('/', routerUser);
+    app.use('/user', routerUser);
 
 
     app.listen(PORT, () => {

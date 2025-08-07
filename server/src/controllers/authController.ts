@@ -40,7 +40,9 @@ export const registerUser = async (req:Request, res:Response) => {
 
 export const loginUser = async (req:Request, res:Response) => {
   try {
+ 
     const db = await connectToDatabase();
+    
     const usersCollection = db.collection<UserDbType>('users');
     const user = await usersCollection.findOne({ email: req.body.email });
 
@@ -58,10 +60,10 @@ export const loginUser = async (req:Request, res:Response) => {
     }
    
     const token = jwt.sign({ userId: user._id }, process.env.JWT_TOKEN!);
-   
+
     return res.status(200).send({ token, userId: user._id, userName: user.name, userStatus: user.status });
   } catch (err) {
-    console.error(err);
-    return res.status(404).send({msg: 'Wrong password or email'});
+    
+    return res.send(err);
   }
 };

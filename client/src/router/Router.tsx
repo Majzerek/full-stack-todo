@@ -1,5 +1,5 @@
 import { NavbarWrapper } from "@/components";
-import { Dashboard, Login, NewTask, NotFoundPage, Register, WaitForApprove } from "@/pages";
+import { Dashboard, Login, NewTask, NotFoundPage, Profile, Register, WaitForApprove } from "@/pages";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -25,7 +25,11 @@ export const router = createBrowserRouter([
           {
             path:'/add-task',
             element:<NewTask />
-          }
+          },
+          {
+            path: "/profile",
+            element: <Profile />
+          },
           // {
           //   path: "/users",
           //   element: <AdminRoute />,
@@ -34,10 +38,7 @@ export const router = createBrowserRouter([
           //   ]
           // },
 
-          // {
-          //   path: "/profile",
-          //   element: <Profile />
-          // },
+          
 
         ],
 

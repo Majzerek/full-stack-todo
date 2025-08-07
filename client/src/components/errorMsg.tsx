@@ -3,7 +3,7 @@ import type { FieldError, Merge } from 'react-hook-form'
 
 type ErrorsMsgTypee = {
   message: string | undefined,
-  bool: FieldError | Merge<FieldError, (FieldError | undefined)[]> | undefined,
+  bool: FieldError | Merge<FieldError, (FieldError | undefined)[]> | undefined ,
   className?: string,
 } & React.ComponentProps<'small'>;
 

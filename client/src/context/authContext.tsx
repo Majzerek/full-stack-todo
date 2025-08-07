@@ -1,5 +1,4 @@
-import { removeToken, setToken, setUserId } from "@/services/authServices";
-import axios from "axios";
+import { getToken, removeToken, setToken } from "@/services/authServices";
 import { createContext, useContext, useEffect, useState, type FC, type ReactNode } from "react";
 
 
@@ -16,7 +15,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const login = (data: Record<string, string>) => {
 
-    setUserId(data.userId);
+    localStorage.setItem("userId", data.userId);
     localStorage.setItem("userName", data.userName);
     localStorage.setItem("userStatus", data.userStatus);
     setToken(data.token);
@@ -26,17 +25,17 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const logout = () => {
     removeToken();
     setIsLogin(false);
-
   };
-  useEffect(() => {
-    const value = {isLogin}
-    const send = async () => {
-      await axios.post('http://localhost:4040/isLogin', value)
-        .then(() => { })
-        .catch((err) => console.error(err))
+  
+  useEffect(()=> {
+    const authorizationToken = getToken();
+    if(isLogin === false && !authorizationToken) {
+      return logout()
     }
-    send();
-  }, [isLogin])
+  },[])
+
+
+
   const VALUES = {
     isLogin,
     setIsLogin,
