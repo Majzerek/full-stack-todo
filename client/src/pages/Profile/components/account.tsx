@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 type UpdateProps = {
   userInfo: UpdateInfoType
 }
-export const Account = ({userInfo}:UpdateProps) => {
+const Account = ({userInfo}:UpdateProps) => {
 
   if(!userInfo) return
   return (
@@ -49,3 +49,6 @@ export const Account = ({userInfo}:UpdateProps) => {
     </Card>
   )
 }
+
+
+export default Account;

@@ -1,15 +1,12 @@
 import * as yup from 'yup';
 import { Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, ErrorMsg, Input, Label, Loader } from "@/components"
-import { useAlertContext, useAuthContext, useUserContext } from "@/context"
+import { useAlertContext, useAuthContext } from "@/context"
 import type { UpdateInfoType } from "@/types";
 import { useState } from "react";
 import { emailRegex } from '@/utils/helpers/regex';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
-import { useUserData } from '@/hooks/useUserData';
-
-
 
 
 const validationSchema: yup.ObjectSchema<UpdateInfoType> = yup.object().shape({
@@ -32,19 +29,17 @@ const validationSchema: yup.ObjectSchema<UpdateInfoType> = yup.object().shape({
   }),
 });
 type UpdateProps = {
-  userInfo: UpdateInfoType
+  userInfo: UpdateInfoType;
+  userID: string | null;
 }
-
-export const UpdateInfo = ({userInfo}: UpdateProps) => {
-
+const UpdateInfo = ({userInfo,userID}: UpdateProps) => {
+  
   const { logout } = useAuthContext();
-  const { userID } = useUserData()
   const [isLoading, setIsLoading] = useState(false);
 
   const {
     handleSubmit,
     control,
-    reset,
     formState: { errors }
   } = useForm<UpdateInfoType>({
     resolver: yupResolver(validationSchema),
@@ -153,3 +148,4 @@ export const UpdateInfo = ({userInfo}: UpdateProps) => {
     </Card>
   )
 }
+export default UpdateInfo

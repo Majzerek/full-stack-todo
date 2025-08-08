@@ -2,19 +2,19 @@ import { UserDbType } from "../types";
 import { connectToDatabase } from "../db/db";
 import { Request, Response } from "express";
 import { ObjectId } from "mongodb";
-import { format } from "date-fns";
 
 export const getUser = async (req: Request, res: Response) => {
   try {
     const db = await connectToDatabase();
     const usersCollection = db.collection<UserDbType>('users');
     const user = await usersCollection.findOne({ _id: new ObjectId(req.params.id) });
-    if (!user) return
-    const { password, status, role, _id, ...rest } = user;
-    return res.status(200).send(rest);
+    if (!user) return;
+    const { password,  _id, ...rest } = user;
+    const data = {id: user._id,...rest};
+    return res.status(200).send(data);
   } catch (err) {
     console.error("ERR", err);
-    return res.status(404).send('User not found');
+    return res.status(404).send({message:'User not found'});
   }
 };
 

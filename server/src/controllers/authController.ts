@@ -63,7 +63,7 @@ export const loginUser = async (req:Request, res:Response) => {
 
     return res.status(200).send({ token, userId: user._id, userName: user.name, userStatus: user.status });
   } catch (err) {
-    
-    return res.send(err);
+    console.error(err);
+    return res.send({message: "Something went wrong."});
   }
 };

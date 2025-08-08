@@ -24,8 +24,8 @@ const validationSchema: yup.ObjectSchema<LoginTypes> = yup.object().shape({
 export const Login = () => {
 
   const { login } = useAuthContext();
-  const [loading, setLoading] = useState(false);
   const { showSuccessAlert, showErrorAlert } = useAlertContext();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   
@@ -46,17 +46,17 @@ export const Login = () => {
     await axios.post("http://127.0.0.1:4040/login", values)
       .then((res) => {
         login(res.data)
-        setLoading(false)
         showSuccessAlert(`Welcome ${res.data.userName}`)
         navigate("/")
+        setLoading(false)
       })
       .catch((err) => {
         if (err.response?.status === 403) {
           return showErrorAlert(err.response.data.message)
         }
-        setLoading(false)
         showErrorAlert(err.response.data.message)
         console.error("ERR", err)
+        setLoading(false)
       })
   }
 

@@ -7,8 +7,8 @@ export type RegisterFormType = {
   confirmPassword: string;
   role: string;
 };
-export type UpdateInfoType = Omit<RegisterFormType, 'confirmPassword' | "password" | "role"> & {
-  joined?: string;
+
+type Address = {
   personalAddress?: {
     street: string;
     postCode: string;
@@ -17,4 +17,17 @@ export type UpdateInfoType = Omit<RegisterFormType, 'confirmPassword' | "passwor
     apartmentNumber?: string;
   }
 }
+export type UpdateInfoType = Omit<RegisterFormType, 'confirmPassword' | "password" | "role"> & {
+  joined?: string;
+} & Address;
 
+export type UserDataType = {
+  id: string;
+  name:string;
+  surname: string;
+  email: string;
+  phoneNumber?: string;
+  role: string;
+  joined: string;
+  status: string;
+} & Address;

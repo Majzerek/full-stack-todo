@@ -32,7 +32,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     if(isLogin === false && !authorizationToken) {
       return logout()
     }
-  },[])
+  },[isLogin])
 
 
 
