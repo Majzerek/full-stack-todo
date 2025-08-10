@@ -17,7 +17,7 @@ type Address = {
     apartmentNumber?: string;
   }
 }
-export type UpdateInfoType = Omit<RegisterFormType, 'confirmPassword' | "password" | "role"> & {
+export type UpdateInfoType = Omit<RegisterFormType, 'confirmPassword' | "password" > & {
   joined?: string;
 } & Address;
 
@@ -27,7 +27,6 @@ export type UserDataType = {
   surname: string;
   email: string;
   phoneNumber?: string;
-  role: string;
   joined: string;
   status: string;
 } & Address;

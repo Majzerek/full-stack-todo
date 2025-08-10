@@ -9,7 +9,7 @@ export const getUser = async (req: Request, res: Response) => {
     const usersCollection = db.collection<UserDbType>('users');
     const user = await usersCollection.findOne({ _id: new ObjectId(req.params.id) });
     if (!user) return;
-    const { password,  _id, ...rest } = user;
+    const { password,  _id,role, ...rest } = user;
     const data = {id: user._id,...rest};
     return res.status(200).send(data);
   } catch (err) {
@@ -49,4 +49,19 @@ export const updateUser = async (req: Request, res: Response) => {
   } catch (err) {
     return res.status(500).send({message: 'Internal Server Error'});
   }
+};
+
+export const getRole = async (req: Request, res: Response) => {
+  try {
+    const db = await connectToDatabase();
+    const usersCollection = db.collection<UserDbType>('users');
+    const user = await usersCollection.findOne({ _id: new ObjectId(req.params.id) });
+    if (!user) return;
+    const { password,  _id, role, ...rest } = user;
+    return res.status(200).send(role);
+  } catch (err) {
+    console.error("ERR", err);
+    return res.status(404).send({message:'User not found'});
+  }
+  
 };
