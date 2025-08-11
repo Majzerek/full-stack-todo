@@ -1,4 +1,4 @@
-import { Loader, Tabs, TabsContent, TabsList, TabsTrigger, Wrapper } from '@/components';
+import { Card, Loader, Tabs, TabsContent, TabsList, TabsTrigger, Wrapper } from '@/components';
 import { useUserData } from '@/hooks/useUserData';
 import { lazy, Suspense } from 'react';
 
@@ -31,14 +31,14 @@ export const Profile = () => {
           </TabsList>
           <TabsContent value="account" className='my-auto'>
 
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Card><Loader /></Card>}>
               <Account userInfo={userInfo} />
             </Suspense>
 
           </TabsContent>
           <TabsContent value="update">
 
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Card><Loader /></Card>}>
               <Update userInfo={userInfo} userID={userID} />
             </Suspense>
 

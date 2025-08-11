@@ -46,7 +46,7 @@ export const TodoForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-center gap-4 transition-all w-100 md:w-180 lg:w-280 p-5 bg-secondary rounded-xl shadow-md shadow-sidebar-primary '>
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-center mb-5 gap-4 transition-all w-100 md:w-180 lg:w-280 p-5 bg-secondary rounded-xl shadow-md shadow-sidebar-primary '>
       
       <Label htmlFor='todoTitle'>Title:</Label>
       <Input type='text' id='todoTitle' placeholder='Title for task' control={control} name={'title'} />

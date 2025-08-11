@@ -7,4 +7,5 @@ export * from "./Login/Login"
 export * from "./WaitForApprove/WaitForApprove"
 export * from "./Profile/Profile"
 export * from './AccessBlocked/AccessBlocked'
+export * from './Admin/Users'
 

@@ -22,5 +22,7 @@ export * from './navBar/NavBarWrapper';
 export * from './wrapper';
 export * from './loader/Loader';
 export * from "./errorMsg";
+export * from "./footer/Footer"
+export * from './customLink'
 // export * from './cardTabs/CardTabs'
 

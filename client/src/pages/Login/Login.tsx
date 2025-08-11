@@ -1,4 +1,4 @@
-import { Button, ErrorMsg, Input, Label, Loader } from '@/components';
+import { Button, CustomLink, ErrorMsg, Input, Label, Loader } from '@/components';
 import { useAlertContext, useAuthContext } from '@/context';
 import { emailRegex, regexPassword } from '@/utils/helpers/regex';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,7 +7,6 @@ import { Eye, EyeClosed } from 'lucide-react';
 import { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 
 type LoginTypes = {
@@ -91,7 +90,7 @@ export const Login = () => {
           </div>
 
         </form>
-              <p className='text-center'>Don't have an account, Register Now <Link to={'/register'} className='text-red-400 transition-colors hover:text-blue-500'>HERE</Link></p>
+              <p className='text-center'>Don't have an account, Register Now <CustomLink to={'/register'}>HERE</CustomLink></p>
       </div>
     </div>
   )

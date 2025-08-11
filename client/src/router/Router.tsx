@@ -7,7 +7,8 @@ import {
   Profile,
   Register,
   WaitForApprove,
-  AccessBlocked
+  AccessBlocked,
+  Users
 } from "@/pages";
 import { AdminRoute } from "@/utils/AdmintRoute";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
@@ -40,13 +41,13 @@ export const router = createBrowserRouter([
             path: "/profile",
             element: <Profile />
           },
-          // {
-          //   path: "/users",
-          //   element: <AdminRoute />,
-          //   children: [
-          //     { path: "/users", element: <Users /> }
-          //   ]
-          // },
+          {
+            path: "/users",
+            element: <AdminRoute />,
+            children: [
+              { path: "/users", element: <Users /> }
+            ]
+          },
 
 
 

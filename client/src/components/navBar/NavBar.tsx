@@ -4,8 +4,9 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Button } from "../ui/button"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useAuthContext, useTheme } from "@/context"
-import { ITEMS_NAV } from "@/utils"
+import { ITEMS_NAV, ITEMS_NAV_ADMIN } from "@/utils"
 import { NavDropdown } from "./navDropdown"
+import { useUserRole } from "@/hooks/useUserRole"
 
 
 const Navbar = () => {
@@ -13,23 +14,30 @@ const Navbar = () => {
   const { setTheme } = useTheme();
   const href = useLocation()
   const { logout } = useAuthContext();
- 
   const navigate = useNavigate();
+  const role = useUserRole();
 
   const DoLogout = () => {
     logout();
     navigate('/login')
   }
   return (
-    <nav className="p-2 flex items-center justify-between bg-sidebar w-full fixed z-10 border-b-2">
+    <nav className="p-2 flex items-center justify-between bg-sidebar w-full fixed z-10 border-b-1 border-b-accent-foreground ">
       <div className="flex items-center gap-4">
         <span className="mr-2 ">TodoApp</span>
-
-        {ITEMS_NAV.map((item) => (
-          <Link key={item.id} to={item.url} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
-        ))}
+        {role === "ADMIN" 
+        ? 
+          ITEMS_NAV_ADMIN.map((item) => (
+            <Link key={item.id} to={item.url} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
+          ))
+        :
+          
+            ITEMS_NAV.map((item) => (
+              <Link key={item.id} to={item.url} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
+            ))
+          
+        }
         <NavDropdown />
-
       </div>
       <div className="flex items-center gap-4">
         <DropdownMenu>
@@ -62,12 +70,12 @@ const Navbar = () => {
           <DropdownMenuContent sideOffset={10} className="mr-2">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-              <Link to={'/profile'}>
-            <DropdownMenuItem>
-              <User className="h-[1.2rem] w-[1.2rem] mr-2" />
-              Profile
-            </DropdownMenuItem>
-              </Link>
+            <Link to={'/profile'}>
+              <DropdownMenuItem>
+                <User className="h-[1.2rem] w-[1.2rem] mr-2" />
+                Profile
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>
               <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
               Settings
