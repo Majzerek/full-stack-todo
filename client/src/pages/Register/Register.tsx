@@ -97,20 +97,20 @@ export const Register = () => {
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email:</Label>
-            <Input control={control} title="email" name="email" id="email" placeholder="Email (Need for login)" className="w-full" />
+            <Input control={control} title="Email" name="email" id="email" placeholder="Email (Need for login)" className="w-full" />
             <ErrorMsg bool={errors.email} message={errors.email?.message} />
           </div>
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="phoneNumber">Phoone Number:</Label>
-            <Input control={control} title="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="Phone Number (Optional)" className="w-full" />
+            <Input control={control} title="Phone-Number" name="phoneNumber" id="phoneNumber" placeholder="Phone Number (Optional)" className="w-full" />
             <ErrorMsg bool={errors.phoneNumber} message={errors.phoneNumber?.message} />
           </div>
 
           <div className="flex flex-col gap-2 relative h-30">
             <Label htmlFor="password">Password:</Label>
-            <Input type={show.password ? 'text' : 'password'} control={control} title="password" name="password" id="password" placeholder="Password" className="w-full"  />
-            <div className="absolute bottom-[60%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, password: !prev.password }))} >
+            <Input type={show.password ? 'text' : 'password'} control={control} title="Password" name="password" id="password" placeholder="Password" className="w-full"  />
+            <div className="absolute bottom-[55%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, password: !prev.password }))} >
               {show.password ? <Eye /> : <EyeClosed />}
             </div>
             <ErrorMsg bool={errors.password} message={errors.password?.message} />
@@ -118,8 +118,8 @@ export const Register = () => {
 
           <div className="flex flex-col gap-2 relative h-30">
             <Label htmlFor="confirmPassword">Confirm Password:</Label>
-            <Input type={show.confirm ? 'text' : 'password'} control={control} title="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" className="w-full" />
-            <div className="absolute bottom-[60%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, confirm: !prev.confirm }))} >
+            <Input type={show.confirm ? 'text' : 'password'} control={control} title="Confirm-Password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" className="w-full" />
+            <div className="absolute bottom-[55%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, confirm: !prev.confirm }))} >
               {show.confirm ? <Eye /> : <EyeClosed />}
             </div>
             <ErrorMsg bool={errors.confirmPassword} message={errors.confirmPassword?.message} />

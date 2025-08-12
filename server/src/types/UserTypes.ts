@@ -18,3 +18,5 @@ export type UserDbType = {
         apartmentNumber?: string;
     };
 }
+
+export type UsersStatisticType = Omit<UserDbType, '_id'>

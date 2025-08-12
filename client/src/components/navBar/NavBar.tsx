@@ -12,7 +12,7 @@ import { useUserRole } from "@/hooks/useUserRole"
 const Navbar = () => {
 
   const { setTheme } = useTheme();
-  const href = useLocation()
+  const href = useLocation();
   const { logout } = useAuthContext();
   const navigate = useNavigate();
   const role = useUserRole();
@@ -20,7 +20,8 @@ const Navbar = () => {
   const DoLogout = () => {
     logout();
     navigate('/login')
-  }
+  };
+
   return (
     <nav className="p-2 flex items-center justify-between bg-sidebar w-full fixed z-10 border-b-1 border-b-accent-foreground ">
       <div className="flex items-center gap-4">
@@ -28,12 +29,12 @@ const Navbar = () => {
         {role === "ADMIN" 
         ? 
           ITEMS_NAV_ADMIN.map((item) => (
-            <Link key={item.id} to={item.url} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
+            <Link key={item.id} to={item.url} title={item.title.toUpperCase()} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
           ))
         :
           
             ITEMS_NAV.map((item) => (
-              <Link key={item.id} to={item.url} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
+              <Link key={item.id} to={item.url} title={item.title.toUpperCase()} className={href.pathname === item.url ? 'text-sidebar-primary transition-colors hidden sm:block' : 'hidden sm:block'}  >{item.title.toUpperCase()}</Link>
             ))
           
         }
@@ -42,7 +43,7 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" title="Theme">
               <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
               <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
               <span className="sr-only">Toggle theme</span>
@@ -61,9 +62,9 @@ const Navbar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu >
-          <DropdownMenuTrigger>
-            <Avatar>
-              <AvatarImage src={'https://plus.unsplash.com/premium_photo-1754254828698-12c96f89d7a2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} />
+          <DropdownMenuTrigger >
+            <Avatar title="Profil & Settings" className="cursor-pointer hover:scale-120 active:scale-90 ">
+              <AvatarImage src={'https://plus.unsplash.com/premium_photo-1754254828698-12c96f89d7a2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} className=""  />
               <AvatarFallback></AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
@@ -71,12 +72,12 @@ const Navbar = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <Link to={'/profile'}>
-              <DropdownMenuItem>
+              <DropdownMenuItem title="Profil Info">
                 <User className="h-[1.2rem] w-[1.2rem] mr-2" />
                 Profile
               </DropdownMenuItem>
             </Link>
-            <DropdownMenuItem>
+            <DropdownMenuItem title="Settings">
               <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
               Settings
             </DropdownMenuItem>

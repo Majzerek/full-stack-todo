@@ -1,28 +1,17 @@
 import * as React from "react"
-import { useController, type Control } from "react-hook-form"
 import { cn } from "@/lib/utils"
 
 interface InputProps extends React.ComponentProps<"input"> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control?: Control<any, any>;
   name: string;
 }
 
-function Input({ className, type, control, name, ...props }: InputProps) {
+function InputBasic({ className, type,  name, ...props }: InputProps) {
 
-  const {
-    field: { onChange, onBlur, value },
-  } = useController({
-    control,
-    name,
-  });
+
   return (
     <input
       type={type}
       data-slot="input"
-      onChange={onChange}
-      onBlur={onBlur}
-      value={value}
       id={name}
       name={name}
       className={cn(
@@ -36,4 +25,4 @@ function Input({ className, type, control, name, ...props }: InputProps) {
   )
 }
 
-export { Input }
+export { InputBasic }

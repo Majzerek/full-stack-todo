@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import routerAuth from './routes/authRoutes';
 import routerUser from './routes/userRoutes';
+import adminRouter from './routes/adminRouter';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ const serverStart = async () => {
     
     app.use('/user', routerUser);
 
+    app.use('/users', adminRouter);
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);

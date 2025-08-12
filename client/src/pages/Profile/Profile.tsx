@@ -24,12 +24,12 @@ export const Profile = () => {
       <h1 className='text-center text-4xl font-bold my-10' >Profile {userName.toUpperCase()}</h1>
 
       <div className="flex flex-col items-center gap-6 ">
-        <Tabs defaultValue="account" className='w-full sm:w-[70vw] md:w-[85vw] m-5 transition-all '>
+        <Tabs defaultValue="account" className='w-full sm:w-[70vw] md:w-[85vw] m-5 transition-all  '>
           <TabsList>
             <TabsTrigger value="account" >{userName?.toUpperCase()} Info</TabsTrigger>
             <TabsTrigger value="update" >Update Profil</TabsTrigger>
           </TabsList>
-          <TabsContent value="account" className='my-auto'>
+          <TabsContent value="account" >
 
             <Suspense fallback={<Card><Loader /></Card>}>
               <Account userInfo={userInfo} />

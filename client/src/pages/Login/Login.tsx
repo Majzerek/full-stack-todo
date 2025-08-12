@@ -70,13 +70,13 @@ export const Login = () => {
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email:</Label>
-            <Input control={control} title="email" name="email" id="email" placeholder="Email" className="w-full" />
+            <Input control={control} title="Email" name="email" id="email" placeholder="Email" className="w-full" />
             <ErrorMsg bool={errors.email} message={errors.email?.message} />
           </div>
 
           <div className="flex flex-col gap-2 relative h-max">
             <Label htmlFor="password">Password:</Label>
-            <Input type={showPassword ? 'text' : 'password'} control={control} title="password" name="password" id="password" placeholder="Password" className="w-full relative" />
+            <Input type={showPassword ? 'text' : 'password'} control={control} title="Password" name="password" id="password" placeholder="Password" className="w-full relative" />
             <div className="absolute w-5 h-5 bottom-[2%] right-[2%] translate-y-[-50%] translate-x-[-50%] cursor-pointer" onClick={() => setShowPassword((prev) => !prev)} >
               {showPassword ? <Eye className='h-5 w-5'/> : <EyeClosed className='h-5 w-5'/>}
             </div>

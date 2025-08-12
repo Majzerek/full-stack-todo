@@ -14,7 +14,8 @@ export * from "./ui/popover";
 export * from "./ui/textarea";
 export * from "./ui/tabs";
 export * from "./ui/card";
-// export * from "./ui/"
+export * from "./ui/table"
+export * from "./ui/basicInput"
 
 //component
 export * from './navBar/NavBar';

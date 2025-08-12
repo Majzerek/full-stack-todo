@@ -30,7 +30,7 @@ export function DataPicker({ control, name }: DataPickerProps) {
           variant="outline"
           data-empty={!date}
           className="data-[empty=true]:text-muted-foreground justify-start text-left font-normal w-full"
-          
+          title="Pick a Date"
         >
           <CalendarIcon />
           {date ? format(date, "PPP") : <span>Pick a date</span>}

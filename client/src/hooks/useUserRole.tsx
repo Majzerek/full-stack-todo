@@ -18,6 +18,6 @@ export const useUserRole = () => {
     fetchData()
   }, [userId])
 
-
+  
   return role;
 }

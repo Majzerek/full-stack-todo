@@ -9,7 +9,7 @@ const Account = ({userInfo}:UpdateProps) => {
 
   if(!userInfo) return
   return (
-    <Card>
+    <Card className='shadow-md shadow-sidebar-primary transition-all'>
       <CardHeader>
         <CardTitle>Account</CardTitle>
         <CardDescription>

@@ -29,7 +29,7 @@ export const updateUser = async (req: Request, res: Response) => {
       return res.status(400).send({message:'Invalid user ID'});
     }
 
-    const user = await usersCollection.findOne({ _id: new ObjectId(userId) })
+    const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
 
     if (!user) {
       return res.status(404).send({message:'User not found'});

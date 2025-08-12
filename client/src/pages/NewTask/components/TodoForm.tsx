@@ -47,14 +47,14 @@ export const TodoForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-center mb-5 gap-4 transition-all w-100 md:w-180 lg:w-280 p-5 bg-secondary rounded-xl shadow-md shadow-sidebar-primary '>
-      
+
       <Label htmlFor='todoTitle'>Title:</Label>
-      <Input type='text' id='todoTitle' placeholder='Title for task' control={control} name={'title'} />
+      <Input title='Task Title' type='text' id='todoTitle' placeholder='Title for task' control={control} name={'title'} />
       <ErrorMsg bool={errors.title} message={errors.title?.message} />
 
 
-       <Label htmlFor='todoDescription'>Description:</Label>
-      <Textarea placeholder='Description for task' control={control} name={'description'} maxLength={121} className='resize-none overflow-auto h-25 px-2' />
+      <Label htmlFor='todoDescription'>Description:</Label>
+      <Textarea title='Task Description' placeholder='Description for task' control={control} name={'description'} maxLength={121} className='resize-none overflow-auto h-25 px-2' />
       <ErrorMsg bool={errors.description} message={errors.description?.message} />
 
       <div className='flex flex-col gap-1'>
@@ -62,6 +62,7 @@ export const TodoForm = () => {
         {fields.map((field, index) => (
           <div key={field.id} className='flex gap-1.5 items-center'>
             <Input
+              title={`hashTag.${index +1}`}
               type='text'
               placeholder={`# ${index + 1}`}
               control={control}
@@ -73,10 +74,10 @@ export const TodoForm = () => {
       </div>
       <ErrorMsg bool={errors.hashTag} message={errors.hashTag?.message} />
 
-      <Button className='w-50 self-center'  type="button" onClick={() => append("")}>Add Hashtag</Button>
-   
-      <Label htmlFor='userDate'>To When:</Label>
-      <DataPicker control={control} name={'userDate'}/>
+      <Button className='w-50 self-center' type="button" onClick={() => append("")}>Add Hashtag</Button>
+
+      <Label htmlFor='userDate'>Time to perform:</Label>
+      <DataPicker  control={control} name={'userDate'} />
       <ErrorMsg bool={errors.userDate} message={errors.userDate?.message} />
 
 

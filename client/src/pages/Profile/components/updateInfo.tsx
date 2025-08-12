@@ -81,7 +81,7 @@ const UpdateInfo = ({userInfo,userID}: UpdateProps) => {
   if (!userInfo) return null;
 
   return (
-    <Card >
+    <Card className='shadow-md shadow-sidebar-primary transition-all'>
       <CardHeader>
         <CardTitle>Update Info</CardTitle>
         <CardDescription>
