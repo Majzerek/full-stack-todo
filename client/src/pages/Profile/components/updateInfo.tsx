@@ -19,6 +19,7 @@ const validationSchema: yup.ObjectSchema<UpdateInfoType> = yup.object().shape({
   phoneNumber: yup.string().optional(),
 
   joined: yup.string().optional(),
+  avatar: yup.string().optional(),
 
   personalAddress: yup.object().shape({
     town: yup.string().required("Town is required").min(2, "Town must contain at lest 2 characters").max(15, "Town contains too many characters, max 15"),
@@ -50,6 +51,7 @@ const UpdateInfo = ({userInfo,userID}: UpdateProps) => {
       email: userInfo?.email || '',
       phoneNumber: userInfo?.phoneNumber || '',
       joined: userInfo?.joined || '',
+      avatar: '',
       personalAddress: {
         town: "",
         street: "",
@@ -110,6 +112,11 @@ const UpdateInfo = ({userInfo,userID}: UpdateProps) => {
             <Label htmlFor="tabs-new-phoneNumber"><Badge>Phone Number: </Badge> </Label>
             <Input id="tabs-phoneNumber" type="text" name="phoneNumber" control={control} placeholder={userInfo.phoneNumber ? userInfo.phoneNumber : 'None'} />
             <ErrorMsg bool={errors.phoneNumber} message={errors.phoneNumber?.message} />
+          </div>
+          <div className="flex flex-col h-max gap-3">
+            <Label htmlFor="tabs-new-avatar"><Badge>Avatar: </Badge> </Label>
+            <Input id="tabs-avatar" type="text" name="avatar" control={control} placeholder={"Link to your photo."} />
+            <ErrorMsg bool={errors.avatar} message={errors.avatar?.message} />
           </div>
           <div className="flex flex-col h-max gap-3">
             <Label htmlFor="tabs-new-town"><Badge>Town: </Badge> </Label>

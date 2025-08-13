@@ -16,7 +16,7 @@ const Navbar = () => {
   const { logout } = useAuthContext();
   const navigate = useNavigate();
   const role = useUserRole();
-
+  const avatar = localStorage.getItem("Avatar")
   const DoLogout = () => {
     logout();
     navigate('/login')
@@ -64,7 +64,7 @@ const Navbar = () => {
         <DropdownMenu >
           <DropdownMenuTrigger >
             <Avatar title="Profil & Settings" className="cursor-pointer hover:scale-120 active:scale-90 ">
-              <AvatarImage src={'https://plus.unsplash.com/premium_photo-1754254828698-12c96f89d7a2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} className=""  />
+              <AvatarImage src={avatar ? avatar : "https://images.unsplash.com/photo-1588444364888-a6a27830dab8?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} className=""  />
               <AvatarFallback></AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>

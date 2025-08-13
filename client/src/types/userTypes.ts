@@ -19,6 +19,7 @@ type Address = {
 }
 export type UpdateInfoType = Omit<RegisterFormType, 'confirmPassword' | "password"> & {
   joined?: string;
+  avatar: string;
 } & Address;
 
 export type UserDataType = {
