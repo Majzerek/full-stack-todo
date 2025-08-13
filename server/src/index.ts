@@ -4,6 +4,8 @@ import express from 'express';
 import routerAuth from './routes/authRoutes';
 import routerUser from './routes/userRoutes';
 import adminRouter from './routes/adminRouter';
+import routerTask from './routes/authTaskRouter';
+import { authenticateToken } from './middleware/jwt';
 
 dotenv.config();
 
@@ -39,6 +41,8 @@ const serverStart = async () => {
     app.use('/user', routerUser);
 
     app.use('/users', adminRouter);
+
+    app.use('/task',  routerTask);
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);

@@ -1,10 +1,14 @@
+import { ObjectId } from "mongodb";
 
 
-export type TodosType = {
-  id: string,
-  title: string,
-  description: string,
-  hashTag: string[],
-  userDate: string,
+export type TaskDbType = {
+  _id: ObjectId;
+  title: string;
+  description: string;
+  hashTag: string[];
+  userDate: string;
+  createAt: string;
+  isDone: boolean;
+  allowedUser: string;
 }
 

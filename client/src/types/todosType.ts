@@ -5,6 +5,7 @@ export type TodosType = {
   hashTag: string[];
   createAt: Date;
   userDate: Date;
+  isDone: boolean;
 }
 
-export type FormDataType = Omit<TodosType, 'id' | 'createAt'>
+export type FormDataType = Omit<TodosType, 'id' | 'createAt' | 'isDone'>

@@ -16,6 +16,7 @@ export * from "./ui/tabs";
 export * from "./ui/card";
 export * from "./ui/table"
 export * from "./ui/basicInput"
+export * from "./ui/accordion"
 
 //component
 export * from './navBar/NavBar';

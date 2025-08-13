@@ -10,6 +10,7 @@ export type UserDbType = {
     status: string
     joined:string;
     password: string;
+    avatar?: string;
     personalAddress?: {
         street: string;
         postCode: string;

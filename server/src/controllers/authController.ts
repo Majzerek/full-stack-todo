@@ -8,6 +8,7 @@ import { Request, Response } from "express";
 
 export const registerUser = async (req:Request, res:Response) => {
  try {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!req.body || !req.body.password || !req.body.email) {
       return res.status(400).send('Missing required fields');
     }
@@ -61,7 +62,7 @@ export const loginUser = async (req:Request, res:Response) => {
    
     const token = jwt.sign({ userId: user._id }, process.env.JWT_TOKEN!);
 
-    return res.status(200).send({ token, userId: user._id, userName: user.name, userStatus: user.status });
+    return res.status(200).send({ token, userId: user._id, userName: user.name, userStatus: user.status, avatar: user?.avatar });
   } catch (err) {
     console.error(err);
     return res.send({message: "Something went wrong."});

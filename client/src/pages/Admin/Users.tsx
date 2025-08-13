@@ -15,7 +15,7 @@ export const Users = () => {
     <Wrapper>
       <h1 className='text-2xl'>Users</h1>
       <div className="flex flex-col items-center gap-6 ">
-        <Tabs defaultValue="users-list" className='w-full sm:w-[70vw] md:w-[85vw] m-5 transition-all '>
+        <Tabs defaultValue="users-list" className='w-[80%] sm:w-[70vw] md:w-[85vw] m-5 transition-all '>
           <TabsList>
             <TabsTrigger value="users-list" >Users List</TabsTrigger>
             <TabsTrigger value="awaiting-users" >Awaiting Users</TabsTrigger>
