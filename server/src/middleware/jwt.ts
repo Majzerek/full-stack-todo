@@ -5,11 +5,11 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
   const token = req.headers.authorization;
   console.log(req.headers);
 
-  if (token == null) return res.sendStatus(403);
+  if (token == null) return res.sendStatus(403).send({ message: 'Invalid token' });
 
   jwt.verify(token, process.env.JWT_TOKEN as string, (err) => {
 
-    if (err) return res.sendStatus(403);
+    if (err) return res.status(403).send({ message: 'Invalid token' });
 
     next();
   });

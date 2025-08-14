@@ -4,8 +4,9 @@ import express from 'express';
 import routerAuth from './routes/authRoutes';
 import routerUser from './routes/userRoutes';
 import adminRouter from './routes/adminRouter';
-import routerTask from './routes/authTaskRouter';
 import { authenticateToken } from './middleware/jwt';
+import routerAuthTask from './routes/authTaskRouter';
+
 
 dotenv.config();
 
@@ -42,8 +43,8 @@ const serverStart = async () => {
 
     app.use('/users', adminRouter);
 
-    app.use('/task',  routerTask);
-
+    app.use('/task',authenticateToken, routerAuthTask);
+    
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
     });

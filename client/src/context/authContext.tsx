@@ -16,6 +16,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const login = (data: Record<string, string>) => {
 
     localStorage.setItem("userId", data.userId);
+    localStorage.setItem("TOKEN", data.token)
     localStorage.setItem("userName", data.userName);
     localStorage.setItem("userStatus", data.userStatus);
     localStorage.setItem("Avatar", data.avatar)

@@ -54,18 +54,17 @@ export const TodoForm = () => {
     
     setLoading(true);
     await axios.post('http://localhost:4040/task/register-task', Values)
-      .then(() => {
+      .then((res) => {
         setLoading(false)
-        showSuccessAlert("Task successful created!")
+        showSuccessAlert(res.data.message)
         reset()
       })
       .catch((err) => {
         setLoading(false)
-        showErrorAlert(err.data.message)
+        showErrorAlert(err.response.data)
         console.error(err)
       })
-
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-center mb-5 gap-4 transition-all w-100 md:w-180 lg:w-280 p-5 bg-secondary rounded-xl shadow-md shadow-sidebar-primary '>
@@ -73,7 +72,6 @@ export const TodoForm = () => {
       <Label htmlFor='todoTitle'>Title:</Label>
       <Input title='Task Title' type='text' id='todoTitle' placeholder='Title for task' control={control} name={'title'} />
       <ErrorMsg bool={errors.title} message={errors.title?.message} />
-
 
       <Label htmlFor='todoDescription'>Description:</Label>
       <Textarea title='Task Description' placeholder='Description for task' control={control} name={'description'} maxLength={401} className='resize-none overflow-auto h-25 px-2' />
@@ -95,15 +93,13 @@ export const TodoForm = () => {
         ))}
       </div>
       <ErrorMsg bool={errors.hashTag} message={errors.hashTag?.message} />
-
       <Button className='w-50 self-center ' variant={'outline'} type="button" onClick={() => append("")}>Add Hashtag</Button>
 
       <Label htmlFor='userDate'>Time to perform:</Label>
       <DataPicker control={control} name={'userDate'} />
       <ErrorMsg bool={errors.userDate} message={errors.userDate?.message} />
 
-
-      <Button disabled={Boolean(Object.keys(errors).length)} className='w-50 self-center'  type='submit' > save</Button>
+      <Button disabled={Boolean(Object.keys(errors).length)} className='w-50 self-center'  type='submit' > {loading ? <Loader /> : "Add task"}</Button>
     </form>
   )
 }
