@@ -10,7 +10,7 @@ export const registerUser = async (req:Request, res:Response) => {
  try {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!req.body || !req.body.password || !req.body.email) {
-      return res.status(400).send('Missing required fields');
+      return res.status(400).send({message: 'Missing required fields'});
     }
 
     const db = await connectToDatabase();
@@ -18,7 +18,7 @@ export const registerUser = async (req:Request, res:Response) => {
     const user = await usersCollection.findOne({ email: req.body.email });
     
     if (user) {
-      return res.status(409).send({ msg: "Email already existing!" });
+      return res.status(409).send({ message: "Email already existing!" });
     }
  
   const passwordHash = await hash(req.body.password, 10);
@@ -29,13 +29,11 @@ export const registerUser = async (req:Request, res:Response) => {
     status: req.body.role === RoleEnum.USER ? StatusEnum.PENDING : StatusEnum.ACTIVE,
   };
 
- 
-
     await usersCollection.insertOne(registerData);
-    return res.status(200).send('User created');
+    return res.status(200).send({message: `${registerData.name.toUpperCase()} successfully created`});
   } catch (err) {
     console.error(err);
-    return res.status(500).send('Internal server error');
+    return res.status(500).send({message: 'Internal server error'});
   }
 };
 

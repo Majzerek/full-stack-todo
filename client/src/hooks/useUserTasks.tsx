@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react'
 
 export const useUserTasks = () => {
   const [userTasks, setUserTasks] = useState<TodosType[]>([]);
-   const [refetch, setRefetch] = useState(false);
-    useEffect(() => {
+  const [refetch, setRefetch] = useState(false);
+
+  useEffect(() => {
     const userId = getUserId();
     const fetch = async () => {
       await axios.get(`http://localhost:4040/user/tasks/${userId}`)
@@ -23,6 +24,6 @@ export const useUserTasks = () => {
     userTasks, setRefetch
 
   }
-  
+
 }
 

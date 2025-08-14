@@ -60,15 +60,15 @@ export const Register = () => {
     const { confirmPassword, ...rest } = values;
     setLoading(true)
     await axios.post('http://localhost:4040/register-user', rest)
-      .then(() => {
+      .then((res) => {
         setLoading(false)
-        showSuccessAlert("You have successfully created your account!")
+        showSuccessAlert(res.data.message)
         reset()
         navigate('/login')
       })
       .catch((err) => {
         setLoading(false)
-        showErrorAlert(err.response?.status === 409 ? 'Email address already exists' : "Something went wrong")
+        showErrorAlert(err.response.data.message)
         setError(true)
         console.error(error)
       })
