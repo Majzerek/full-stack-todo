@@ -29,7 +29,7 @@ export function DataPicker({ control, name }: DataPickerProps) {
         <Button
           variant="outline"
           data-empty={!date}
-          className="data-[empty=true]:text-muted-foreground justify-start text-left font-normal w-full"
+          className="data-[empty=true]:text-muted-foreground justify-start text-left font-normal w-full active:scale-100"
           title="Pick a Date"
         >
           <CalendarIcon />

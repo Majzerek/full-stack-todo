@@ -1,4 +1,4 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button, Card, CardContent, CardDescription, CardFooter, CardTitle, Loader } from "@/components";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardTitle, Loader } from "@/components";
 import { useAlertContext } from "@/context";
 import { useUserTasks } from "@/hooks/useUserTasks";
 import type { TodosType } from "@/types";
@@ -43,42 +43,40 @@ export const TasksList = () => {
       })
   };
 
-  if (loading) {
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <Loader />
-      </div>
-    )
-  };
 
   return (
-    <div className="w-full flex flex-wrap justify-center">
-      <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-4 gap-4 p-5">
 
-        {userTasks.map((task) => (
-          <Card key={task.id} className="p-2 w-80 h-fit">
-            <CardTitle className="text-center flex flex-col">{task.title} <small>{format(task.createAt, 'dd-MMM-yyyy')}</small>
-            </CardTitle>
-            <CardDescription className="text-center">Is Done: {task.isDone ? "Yes" : "No"}</CardDescription>
-            <Accordion type="single" collapsible className="w-full" >
-              <AccordionItem value="desc" className="">
-                <AccordionTrigger>Description</AccordionTrigger>
-                <AccordionContent className="flex flex-col gap-4 text-balance">
-                  <CardContent title={task.description}>{task.description}</CardContent>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4  p-2">
+      {userTasks.map((task) => (
+          loading ? <Card key={task.id} className={"p-2 w-70 h-94"}><Loader /></Card> :
+        <Card key={task.id} className={task.isDone ? "bg-border opacity-55 p-2 w-70 h-fit" : "p-2 w-70 h-fit"}>
+            <>
+              <CardTitle className="text-center flex flex-col">{task.title.toUpperCase()} <small>{format(task.createAt, 'dd-MMM-yyyy')}</small>
+              </CardTitle>
+              <CardDescription className="text-center text-shadow-2xs text-shadow-black">Is Done: {task.isDone ? "Yes" : "No"}</CardDescription>
+              <Accordion type="single" collapsible className="w-full" >
+                <AccordionItem value="desc" className="">
+                  <AccordionTrigger>Description</AccordionTrigger>
+                  <AccordionContent className="flex flex-col gap-4 text-balance">
+                    <CardContent title={task.description}>{task.description}</CardContent>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
 
-            <CardContent className="flex justify-around flex-col gap-2">
-              <Button disabled={task.isDone} onClick={() => completTask(task)}>Complet</Button>
-              <Button variant={'destructive'} onClick={() => deleteTask(task.id)}>Delet</Button>
-            </CardContent>
-            <CardFooter className="text-center">To: {format(task.userDate, 'dd-MMM-yyyy')}</CardFooter>
-
-          </Card>
-        ))
-        }
-      </div>
+              <CardContent className="flex justify-around flex-col gap-2">
+                <Button disabled={task.isDone} onClick={() => completTask(task)}>Complet</Button>
+                <Button variant={'destructive'} className="z-10" onClick={() => deleteTask(task.id)}>Delet</Button>
+              </CardContent>
+              <div className="flex gap-2 flex-wrap">{task.hashTag?.map((hash, index) => (
+                <Badge className={`bg-chart-${index + 1}`}>{hash}</Badge>
+              ))}</div>
+              <CardFooter className="text-center">To: {format(task.userDate, 'dd-MMM-yyyy')}</CardFooter>
+            </>
+            </Card>
+          
+      ))
+      }
     </div>
+
   )
 }
