@@ -30,7 +30,7 @@ const validationSchema: yup.ObjectSchema<RegisterFormType> = yup.object().shape(
 
 export const Register = () => {
   const navigate = useNavigate();
-  const {showSuccessAlert, showErrorAlert} = useAlertContext();
+  const { showSuccessAlert, showErrorAlert } = useAlertContext();
 
   const {
     handleSubmit,
@@ -76,8 +76,8 @@ export const Register = () => {
 
   return (
     <div className="w-screen h-screen flex flex-col justify-start sm:justify-center items-center">
- 
-      <h1 className="text-3xl mb-5 text-center">App Todo </h1>
+      <title>App Todo Register</title>
+      <h1 className="text-3xl mb-5 text-center">Register in App</h1>
       <div className=" border-2 p-5 rounded-2xl w-full md:w-[80%] m-2 sm:m-15 ">
         <h2 className="text-xl mb-5 text-center">Register</h2>
 
@@ -88,7 +88,7 @@ export const Register = () => {
             <Input control={control} title="Name" name="name" id="firstName" placeholder="First Name" className="w-full" />
             <ErrorMsg bool={errors.name} message={errors.name?.message} />
           </div>
-          
+
           <div className="flex flex-col gap-2">
             <Label htmlFor="surname">Surname:</Label>
             <Input control={control} title="Surname" name="surname" id="surname" placeholder="Last Name" className="w-full" />
@@ -109,7 +109,7 @@ export const Register = () => {
 
           <div className="flex flex-col gap-2 relative h-30">
             <Label htmlFor="password">Password:</Label>
-            <Input type={show.password ? 'text' : 'password'} control={control} title="Password" name="password" id="password" placeholder="Password" className="w-full"  />
+            <Input type={show.password ? 'text' : 'password'} control={control} title="Password" name="password" id="password" placeholder="Password" className="w-full" />
             <div className="absolute bottom-[55%] right-5 translate-y-[50%] cursor-pointer" onClick={() => setShow((prev) => ({ ...prev, password: !prev.password }))} >
               {show.password ? <Eye /> : <EyeClosed />}
             </div>
@@ -132,7 +132,7 @@ export const Register = () => {
 
         </form>
       </div>
-          <Link to={'/login'} className='text-red-400 transition-colors hover:text-blue-500 uppercase text-2xl'>back</Link>
+      <Link to={'/login'} className='text-red-400 transition-colors hover:text-blue-500 uppercase text-2xl'>back</Link>
     </div>
   )
 }

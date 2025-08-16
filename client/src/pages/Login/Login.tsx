@@ -16,7 +16,15 @@ type LoginTypes = {
 
 const validationSchema: yup.ObjectSchema<LoginTypes> = yup.object().shape({
   email: yup.string().required("Email is required").matches(emailRegex, "Please provide valid email").min(9, "The email must contain at last 9 characters").max(35, "The Email is too long, max 35 characters"),
-  password: yup.string().required("Password is required").matches(regexPassword, "The password must contain at least 8 characters, one uppercase, one number and one special case character").max(28, "The Password contain too many characters"),
+  password: yup.string().required("Password is required").min(8, "Password must be at least 8 characters").max(28, "Password contain too many characters, max 28").test("uppercase", "Password must contain at least one uppercase letter", (value) =>
+    /[A-Z]/.test(value || "")
+  )
+    .test("number", "Password must contain at least one number", (value) =>
+      /[0-9]/.test(value || "")
+    )
+    .test("specialChar", "Password must contain at least one special character", (value) =>
+      /[!@#$%^&*(),.?":{}|<>]/.test(value || "")
+    ),
 })
 
 
@@ -27,8 +35,8 @@ export const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  
-   const {
+
+  const {
     handleSubmit,
     control,
     formState: { errors }
@@ -36,7 +44,7 @@ export const Login = () => {
     resolver: yupResolver(validationSchema), defaultValues: {
       email: "",
       password: ""
-    }, mode: "onSubmit"
+    }, mode: "onChange"
   })
 
   const onSubmit = async (values: LoginTypes) => {
@@ -60,9 +68,10 @@ export const Login = () => {
   }
 
   return (
-  <div className="w-screen h-screen flex flex-col justify-start sm:justify-center items-center ">
- 
-      <h1 className="text-3xl mb-5 text-center">Welcome in App Todo </h1>
+    <div className="w-screen h-screen flex flex-col justify-start sm:justify-center items-center ">
+      <title>App Todo Login</title>
+      <h1 className="text-3xl mb-5 text-center">Welcome in App Todo</h1>
+
       <div className=" border-2 p-5 rounded-2xl w-[300px]  m-2 sm:m-15">
         <h2 className="text-xl mb-5 text-center">Login</h2>
 
@@ -78,10 +87,10 @@ export const Login = () => {
             <Label htmlFor="password">Password:</Label>
             <Input type={showPassword ? 'text' : 'password'} control={control} title="Password" name="password" id="password" placeholder="Password" className="w-full relative" />
             <div className="absolute w-5 h-5 bottom-[2%] right-[2%] translate-y-[-50%] translate-x-[-50%] cursor-pointer" onClick={() => setShowPassword((prev) => !prev)} >
-              {showPassword ? <Eye className='h-5 w-5'/> : <EyeClosed className='h-5 w-5'/>}
+              {showPassword ? <Eye className='h-5 w-5' /> : <EyeClosed className='h-5 w-5' />}
             </div>
           </div>
-            <ErrorMsg bool={errors.password} message={errors.password?.message} />
+          <ErrorMsg bool={errors.password} message={errors.password?.message} />
 
 
           <div className="col-span-1 sm:col-span-2 flex items-center justify-center">
@@ -90,7 +99,7 @@ export const Login = () => {
           </div>
 
         </form>
-              <p className='text-center'>Don't have an account, Register Now <CustomLink to={'/register'}>HERE</CustomLink></p>
+        <p className='text-center'>Don't have an account, Register Now <CustomLink to={'/register'}>HERE</CustomLink></p>
       </div>
     </div>
   )

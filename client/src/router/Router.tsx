@@ -8,7 +8,8 @@ import {
   Register,
   WaitForApprove,
   AccessBlocked,
-  Users
+  Users,
+  TodoList
 } from "@/pages";
 import { AdminRoute } from "@/utils/AdmintRoute";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
           {
             path: "/profile",
             element: <Profile />
+          },
+          {
+            path: "/to-do-list",
+            element: <TodoList/>
           },
           {
             path: "/users",
