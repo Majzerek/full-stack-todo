@@ -1,8 +1,12 @@
-# full-stack-todo
+# full-stack-app
 using:
+# node
+# express
 # vite
 # react
+# shadcn
+# tailwind css
 # node
 # typescript
-# express
-# shadcn
+testing:
+# playwright

@@ -4,7 +4,7 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="fixed flex w-full bottom-0 justify-center items-center z-5 h-10 border-t border-t-accent-foreground backdrop-blur-xl">
+    <div className="fixed flex w-[99%] xl:w-full bottom-0 justify-center items-center z-5  h-10 border-t border-t-accent-foreground backdrop-blur-xl">
       <p className="text-md">
         &copy;
         <span className="ml-2">

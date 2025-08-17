@@ -131,9 +131,7 @@ test.describe("Login Page", () => {
     await expect(page.getByText("User not found")).toBeVisible();
   });
 
-  test("should show info about wrong credencials", async ({
-    page,
-  }) => {
+  test("should show info about wrong credencials", async ({ page }) => {
     const inputEmail = page.getByPlaceholder("Email");
     const passwordInput = page.getByPlaceholder("Password");
 
@@ -157,13 +155,14 @@ test.describe("Login Page", () => {
     await expect(page.getByText("Welcome waiting")).toBeVisible();
 
     await expect(page).toHaveTitle("App Todo Wait");
-    await expect(page.getByText("We're sorry, but your account is still waiting to be confirmed.")).toBeVisible();
-
+    await expect(
+      page.getByText(
+        "We're sorry, but your account is still waiting to be confirmed.",
+      ),
+    ).toBeVisible();
   });
 
-  test("should be see info about being blocked", async ({
-    page,
-  }) => {
+  test("should be see info about being blocked", async ({ page }) => {
     const inputEmail = page.getByPlaceholder("Email");
     const passwordInput = page.getByPlaceholder("Password");
 
@@ -173,12 +172,9 @@ test.describe("Login Page", () => {
     await page.getByRole("button", { name: "LOG IN" }).click();
 
     await expect(page.getByText("Account has been blocked")).toBeVisible();
-
   });
 
-   test("should be greeted and redirect to Dashboard page", async ({
-    page,
-  }) => {
+  test("should be greeted and redirect to Dashboard page", async ({ page }) => {
     const inputEmail = page.getByPlaceholder("Email");
     const passwordInput = page.getByPlaceholder("Password");
 
@@ -186,7 +182,7 @@ test.describe("Login Page", () => {
     await passwordInput.fill(correctPass);
 
     await page.getByRole("button", { name: "LOG IN" }).click();
-    await expect(page.getByText("Welcome admin")).toBeVisible();
+    await expect(page.getByText(/Welcome ADMIN/)).toBeVisible();
 
     await expect(page).toHaveTitle("App Todo Dashboard");
     await expect(page.getByText("USERS")).toBeVisible(); // only admins see it.

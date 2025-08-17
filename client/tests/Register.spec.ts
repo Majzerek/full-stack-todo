@@ -1,4 +1,12 @@
-import { correctPass, emailAdmin, emailLong, emailShort, longString, name, surname } from "../src/utils/helpers/testStrings";
+import {
+  correctPass,
+  emailAdmin,
+  emailLong,
+  emailShort,
+  longString,
+  name,
+  surname,
+} from "../src/utils/helpers/testStrings";
 
 import { test, expect } from "@playwright/test";
 
@@ -6,7 +14,6 @@ test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:5173/register");
 });
 test.describe("Register Page", () => {
-
   test("should have correct metadata and elements", async ({ page }) => {
     await expect(page).toHaveTitle("App Todo Register");
 
@@ -45,9 +52,7 @@ test.describe("Register Page", () => {
     await expect(page.getByRole("link", { name: "BACK" })).toBeVisible();
   });
 
-  test("should show erros on inputs, after button click", async ({
-    page,
-  }) => {
+  test("should show erros on inputs, after button click", async ({ page }) => {
     await page.getByRole("button", { name: "CREATE" }).click();
 
     await expect(page.getByText(/Name is required/)).toBeVisible();
@@ -56,7 +61,6 @@ test.describe("Register Page", () => {
     await expect(page.getByText(/Password is required/)).toBeVisible();
     await expect(page.getByText(/Please confirm your password/)).toBeVisible();
   });
-
 
   test("should show errors when checking the correctness of inputs", async ({
     page,
@@ -68,16 +72,19 @@ test.describe("Register Page", () => {
     const inputCornifrm = page.getByTestId("label-confirm");
 
     await inputName.fill("a");
-    await expect(page.getByText("Name must contain at lest 2 characters")).toBeVisible();
+    await expect(
+      page.getByText("Name must contain at lest 2 characters"),
+    ).toBeVisible();
 
     await inputName.fill(longString);
     await expect(
       page.getByText("Name can contain max 20 characters"),
     ).toBeVisible();
 
-
     await inputSurname.fill("a");
-    await expect(page.getByText("Surname must contain at lest 2 characters")).toBeVisible();
+    await expect(
+      page.getByText("Surname must contain at lest 2 characters"),
+    ).toBeVisible();
 
     await inputSurname.fill(longString);
     await expect(
@@ -104,7 +111,9 @@ test.describe("Register Page", () => {
 
     await inputPass.fill("somestring");
     await expect(
-      page.getByText(/One uppercase, One number and One special case character/),
+      page.getByText(
+        /One uppercase, One number and One special case character/,
+      ),
     ).toBeVisible();
 
     await inputPass.fill(longString);
@@ -113,9 +122,7 @@ test.describe("Register Page", () => {
     ).toBeVisible();
 
     await inputCornifrm.fill("aa");
-    await expect(
-      page.getByText(/Passwords don't match/),
-    ).toBeVisible();
+    await expect(page.getByText(/Passwords don't match/)).toBeVisible();
   });
 
   test("should show errors when email is already in data base", async ({
@@ -138,9 +145,7 @@ test.describe("Register Page", () => {
     await expect(page.getByText("Email already existing!")).toBeVisible();
   });
 
-  test("should redirect to the login page on click", async ({
-    page,
-  }) => {
+  test("should redirect to the login page on click", async ({ page }) => {
     await page.getByRole("link", { name: "BACK" }).click();
 
     await expect(page).toHaveTitle(/App Todo Login/);

@@ -111,7 +111,9 @@ export const Register = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col gap-2">
-            <Label htmlFor="firstName"  data-testId="label-name">Name:</Label>
+            <Label htmlFor="firstName" data-testId="label-name">
+              Name:
+            </Label>
             <Input
               control={control}
               title="Name"
@@ -119,13 +121,14 @@ export const Register = () => {
               id="firstName"
               placeholder="First Name"
               className="w-full"
-
             />
             <ErrorMsg bool={errors.name} message={errors.name?.message} />
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="surname"data-testId="label-surname">Surname:</Label>
+            <Label htmlFor="surname" data-testId="label-surname">
+              Surname:
+            </Label>
             <Input
               control={control}
               title="Surname"
@@ -138,7 +141,9 @@ export const Register = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="email" data-testId="label-email">Email:</Label>
+            <Label htmlFor="email" data-testId="label-email">
+              Email:
+            </Label>
             <Input
               control={control}
               title="Email"
@@ -150,8 +155,10 @@ export const Register = () => {
             <ErrorMsg bool={errors.email} message={errors.email?.message} />
           </div>
 
-          <div className="flex flex-col gap-2" >
-            <Label htmlFor="phoneNumber" data-testId="label-phone">Phone Number:</Label>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="phoneNumber" data-testId="label-phone">
+              Phone Number:
+            </Label>
             <Input
               control={control}
               title="Phone-Number"
@@ -167,7 +174,9 @@ export const Register = () => {
           </div>
 
           <div className="flex flex-col gap-2 relative h-30">
-            <Label htmlFor="password" data-testId="label-pass">Password:</Label>
+            <Label htmlFor="password" data-testId="label-pass">
+              Password:
+            </Label>
             <Input
               type={show.password ? "text" : "password"}
               control={control}
@@ -193,7 +202,9 @@ export const Register = () => {
           </div>
 
           <div className="flex flex-col gap-2 relative h-30">
-            <Label htmlFor="confirmPassword"data-testId="label-confirm">Confirm Password:</Label>
+            <Label htmlFor="confirmPassword" data-testId="label-confirm">
+              Confirm Password:
+            </Label>
             <Input
               type={show.confirm ? "text" : "password"}
               control={control}
@@ -219,13 +230,7 @@ export const Register = () => {
           </div>
 
           <div className="col-span-1 sm:col-span-2 flex items-center justify-center">
-            {loading ? (
-              <Loader />
-            ) : (
-              <Button type="submit" >
-                Create
-              </Button>
-            )}
+            {loading ? <Loader /> : <Button type="submit">Create</Button>}
           </div>
         </form>
       </div>

@@ -18,12 +18,16 @@ import { useUserTasks } from "@/hooks/useUserTasks";
 import type { TodosType } from "@/types";
 import axios from "axios";
 import { format } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const TodoList = () => {
   const { userTasks, setRefetch } = useUserTasks();
   const [loading, setLoading] = useState(false);
   const { showErrorAlert, showSuccessAlert } = useAlertContext();
+
+  useEffect(() => {
+    localStorage.setItem("TODO_LIST", JSON.stringify(userTasks));
+  }, [userTasks]);
 
   const completTask = async (task: TodosType) => {
     setLoading(true);
@@ -65,6 +69,7 @@ export const TodoList = () => {
 
   return (
     <Wrapper>
+      <title>App Todo List</title>
       <h1 className="text-center text-3xl">To-Do-List</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4  p-5">
         {userTasks.map((task) => (
@@ -110,8 +115,11 @@ export const TodoList = () => {
 
             <div className="flex gap-2 flex-wrap">
               {task.hashTag?.map((hash, index) => (
-                <Badge key={hash} className={`bg-chart-${index + 1}`}>
-                  {hash}
+                <Badge
+                  key={hash + index}
+                  className={`bg-chart-${(index + 1).toString()}`}
+                >
+                  #{hash}
                 </Badge>
               ))}
             </div>

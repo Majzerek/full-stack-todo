@@ -4,7 +4,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const useUserTasks = () => {
-  const [userTasks, setUserTasks] = useState<TodosType[]>([]);
+  const saved = localStorage.getItem("TODO_LIST");
+  const [userTasks, setUserTasks] = useState<TodosType[]>(
+    saved ? JSON.parse(saved) : [],
+  );
   const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {

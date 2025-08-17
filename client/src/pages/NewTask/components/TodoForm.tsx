@@ -36,8 +36,8 @@ const schemaValidation: yup.ObjectSchema<FormDataType> = yup.object().shape({
       yup
         .string()
         .required()
-        .min(1, "Min 1 character.")
-        .max(15, "Max 15 characters."),
+        .min(3, "Minimum 3 characters")
+        .max(15, "Max 15 characters"),
     )
     .required("HashTag is required field")
     .min(1, "Mnimum 1 hash.")
@@ -46,7 +46,7 @@ const schemaValidation: yup.ObjectSchema<FormDataType> = yup.object().shape({
   userDate: yup
     .date()
     .required("Date is required")
-    .min(new Date(), "Date must be after today"),
+    .min(new Date(), "Date must be at least tomorrow."),
 });
 
 export const TodoForm = () => {
@@ -57,7 +57,7 @@ export const TodoForm = () => {
     formState: { errors },
   } = useForm<FormDataType>({
     resolver: yupResolver(schemaValidation),
-    mode: "onSubmit",
+    mode: "onChange",
     defaultValues: {
       title: "",
       description: "",
@@ -103,6 +103,7 @@ export const TodoForm = () => {
       </Wrapper>
     );
   }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -134,7 +135,8 @@ export const TodoForm = () => {
       />
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="hashTag">Hashtags:</label>
+        <label>Hashtags:</label>
+
         {fields.map((field, index) => (
           <div
             key={field.id}
@@ -167,18 +169,22 @@ export const TodoForm = () => {
           </div>
         ))}
       </div>
-      <ErrorMsg bool={errors.hashTag} message={errors.hashTag?.message} />
       <Button
         className="w-50 self-center "
         variant={"outline"}
         type="button"
         onClick={() => append("")}
+        disabled={fields.length === 5}
       >
         Add Hashtag
       </Button>
 
       <Label htmlFor="userDate">Time to perform:</Label>
-      <DataPicker control={control} name={"userDate"} />
+      <DataPicker
+        control={control}
+        name={"userDate"}
+        data-testId="data-picker"
+      />
       <ErrorMsg bool={errors.userDate} message={errors.userDate?.message} />
 
       <Button
