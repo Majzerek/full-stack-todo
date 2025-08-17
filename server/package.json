@@ -4,13 +4,15 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "server": "nodemon -r ts-node ./src/index.ts",
+    "server": "nodemon -r dotenv/config --exec ts-node src/index.ts",
+    "debug": "ts-node-dev -r dotenv/config --cls --inspect=0.0.0.0:10000 --trace-warnings -- ./src/index.ts",
     "build": "tsc",
+    "lint": "eslint --ext .ts -f table src || exit 0",
     "fix": "eslint --fix --ext .ts -f table src"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Mariusz Mazur <mariuszmazurit@protonmail.me>",
+  "license": "UNLICENSED",
   "type": "commonjs",
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -40,11 +42,11 @@
     "eslint-formatter-table": "^7.32.1",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.3",
-    "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "nodemon": "^3.1.10"
   }
 }

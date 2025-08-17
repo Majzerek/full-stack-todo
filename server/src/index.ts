@@ -7,12 +7,12 @@ import adminRouter from './routes/adminRouter';
 import { authenticateToken } from './middleware/jwt';
 import routerAuthTask from './routes/authTaskRouter';
 
-
+ 
 dotenv.config();
 
 const whitelist = ['http://localhost:5173', 'http://127.0.0.1:5137'];
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4040;
 const app = express();
 
 

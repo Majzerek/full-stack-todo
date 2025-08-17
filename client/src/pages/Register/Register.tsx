@@ -39,7 +39,7 @@ export const Register = () => {
     formState: { errors }
   } = useForm<RegisterFormType>({
     resolver: yupResolver(validationSchema),
-    mode: "onSubmit",
+    mode: "onChange",
     defaultValues: {
       name: "",
       surname: "",

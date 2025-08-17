@@ -1,6 +1,6 @@
 import { Button, CustomLink, ErrorMsg, Input, Label, Loader } from '@/components';
 import { useAlertContext, useAuthContext } from '@/context';
-import { emailRegex, regexPassword } from '@/utils/helpers/regex';
+import { emailRegex } from '@/utils/helpers/regex';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { Eye, EyeClosed } from 'lucide-react';
@@ -72,7 +72,7 @@ export const Login = () => {
       <title>App Todo Login</title>
       <h1 className="text-3xl mb-5 text-center">Welcome in App Todo</h1>
 
-      <div className=" border-2 p-5 rounded-2xl w-[300px]  m-2 sm:m-15">
+      <div className=" border-2 p-5 rounded-2xl w-[300px]  m-2 h-fit">
         <h2 className="text-xl mb-5 text-center">Login</h2>
 
         <form className="flex flex-col gap-2 " onSubmit={handleSubmit(onSubmit)}>
