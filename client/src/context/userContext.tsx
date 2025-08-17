@@ -3,7 +3,6 @@
 // import axios from "axios";
 // import { createContext, useContext, type FC, type ReactNode } from "react"
 
-
 // type UserContextType = {
 //   user: UserDataType;
 //   loading: boolean
@@ -11,14 +10,10 @@
 
 // const UserContext = createContext<UserContextType | null>(null);
 
-
 // export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
-
-
-
 //   const VALUES = {
-  
+
 //   };
 
 //   return (

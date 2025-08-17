@@ -1,7 +1,7 @@
-import { getUserId } from '@/services/authServices';
-import type { TodosType } from '@/types';
-import axios from 'axios';
-import { useEffect, useState } from 'react'
+import { getUserId } from "@/services/authServices";
+import type { TodosType } from "@/types";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export const useUserTasks = () => {
   const [userTasks, setUserTasks] = useState<TodosType[]>([]);
@@ -10,20 +10,19 @@ export const useUserTasks = () => {
   useEffect(() => {
     const userId = getUserId();
     const fetch = async () => {
-      await axios.get(`http://localhost:4040/user/tasks/${userId}`)
+      await axios
+        .get(`http://localhost:4040/user/tasks/${userId}`)
         .then((res) => {
-          setUserTasks(res.data)
-          setRefetch(false)
+          setUserTasks(res.data);
+          setRefetch(false);
         })
-        .catch((err) => console.log(err))
-    }
+        .catch((err) => console.log(err));
+    };
     fetch();
-  }, [refetch])
+  }, [refetch]);
 
   return {
-    userTasks, setRefetch
-
-  }
-
-}
-
+    userTasks,
+    setRefetch,
+  };
+};

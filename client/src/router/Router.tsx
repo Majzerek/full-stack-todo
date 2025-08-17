@@ -9,12 +9,11 @@ import {
   WaitForApprove,
   AccessBlocked,
   Users,
-  TodoList
+  TodoList,
 } from "@/pages";
 import { AdminRoute } from "@/utils/AdmintRoute";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
 import { createBrowserRouter } from "react-router-dom";
-
 
 export const router = createBrowserRouter([
   {
@@ -32,51 +31,44 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/",
-            element: <Dashboard />
+            element: <Dashboard />,
           },
           {
-            path: '/add-task',
-            element: <NewTask />
+            path: "/add-task",
+            element: <NewTask />,
           },
           {
             path: "/profile",
-            element: <Profile />
+            element: <Profile />,
           },
           {
             path: "/to-do-list",
-            element: <TodoList/>
+            element: <TodoList />,
           },
           {
             path: "/users",
             element: <AdminRoute />,
-            children: [
-              { path: "/users", element: <Users /> }
-            ]
+            children: [{ path: "/users", element: <Users /> }],
           },
-
-
-
         ],
-
       },
     ],
   },
 
   {
     path: "/login",
-    element: <Login />
+    element: <Login />,
   },
   {
     path: "/register",
-    element: <Register />
+    element: <Register />,
   },
   {
     path: "/wait-for-approve",
-    element: <WaitForApprove />
+    element: <WaitForApprove />,
   },
   {
     path: "/access-blocked",
-    element: <AccessBlocked />
+    element: <AccessBlocked />,
   },
-
 ]);

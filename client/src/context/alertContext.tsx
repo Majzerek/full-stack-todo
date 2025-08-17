@@ -1,10 +1,9 @@
 import { createContext, useContext, type ReactNode, type FC } from "react";
 import { Slide, toast, type ToastOptions } from "react-toastify";
 
-
 interface AlertContextType {
-    showSuccessAlert: (message: string) => void;
-    showErrorAlert: (message: string) => void;
+  showSuccessAlert: (message: string) => void;
+  showErrorAlert: (message: string) => void;
 }
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
@@ -19,18 +18,15 @@ const defaultToastOptions: ToastOptions = {
   progress: undefined,
   theme: "dark",
   transition: Slide,
-
 };
 
-
 export const AlertProvider: FC<{ children: ReactNode }> = ({ children }) => {
-
   const showSuccessAlert = (message: string) => {
-    toast.success(message, defaultToastOptions)
+    toast.success(message, defaultToastOptions);
   };
 
   const showErrorAlert = (message: string) => {
-    toast.error(message, defaultToastOptions)
+    toast.error(message, defaultToastOptions);
   };
 
   return (

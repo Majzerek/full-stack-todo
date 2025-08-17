@@ -1,5 +1,5 @@
 //ui
-export * from './ui/avatar';
+export * from "./ui/avatar";
 export * from "./ui/button";
 export * from "./ui/dropdown-menu";
 export * from "./ui/separator";
@@ -14,17 +14,15 @@ export * from "./ui/popover";
 export * from "./ui/textarea";
 export * from "./ui/tabs";
 export * from "./ui/card";
-export * from "./ui/table"
-export * from "./ui/basicInput"
-export * from "./ui/accordion"
+export * from "./ui/table";
+export * from "./ui/accordion";
 
 //component
-export * from './navBar/NavBar';
-export * from './navBar/NavBarWrapper';
-export * from './wrapper';
-export * from './loader/Loader';
+export * from "./navBar/NavBar";
+export * from "./navBar/NavBarWrapper";
+export * from "./wrapper";
+export * from "./loader/Loader";
 export * from "./errorMsg";
-export * from "./footer/Footer"
-export * from './customLink'
+export * from "./footer/Footer";
+export * from "./customLink";
 // export * from './cardTabs/CardTabs'
-

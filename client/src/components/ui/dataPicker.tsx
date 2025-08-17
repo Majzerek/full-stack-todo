@@ -1,22 +1,22 @@
-import * as React from "react"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import * as React from "react";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { useController, type Control } from "react-hook-form"
+} from "@/components/ui/popover";
+import { useController, type Control } from "react-hook-form";
 
 type DataPickerProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: Control<any, any>,
-  name: string,
-}
+  control: Control<any, any>;
+  name: string;
+};
 export function DataPicker({ control, name }: DataPickerProps) {
-  const [date, setDate] = React.useState<Date>()
+  const [date, setDate] = React.useState<Date>();
   const {
     field: { onChange },
   } = useController({
@@ -25,7 +25,7 @@ export function DataPicker({ control, name }: DataPickerProps) {
   });
   return (
     <Popover>
-      <PopoverTrigger asChild >
+      <PopoverTrigger asChild>
         <Button
           variant="outline"
           data-empty={!date}
@@ -45,9 +45,8 @@ export function DataPicker({ control, name }: DataPickerProps) {
             onChange(selectedDate);
           }}
           id={name}
-          
         />
       </PopoverContent>
     </Popover>
-  )
+  );
 }

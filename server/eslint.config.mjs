@@ -11,33 +11,42 @@ const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
+  allConfig: js.configs.all,
 });
 
-export default defineConfig([globalIgnores(["src/**/*.test.ts", "src/frontend/generated/*"]), {
-  extends: compat.extends("eslint:recommended", "plugin:@typescript-eslint/recommended"),
+export default defineConfig([
+  globalIgnores(["src/**/*.test.ts", "src/frontend/generated/*"]),
+  {
+    extends: compat.extends(
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+    ),
 
-  plugins: {
-    "@typescript-eslint": typescriptEslint,
-  },
+    plugins: {
+      "@typescript-eslint": typescriptEslint,
+    },
 
-  languageOptions: {
-    parser: tsParser,
-    ecmaVersion: 5,
-    sourceType: "script",
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 5,
+      sourceType: "script",
 
-    parserOptions: {
-      project: ["./tsconfig.json"],
+      parserOptions: {
+        project: ["./tsconfig.json"],
+      },
+    },
+
+    rules: {
+      "@typescript-eslint/strict-boolean-expressions": [
+        2,
+        {
+          allowString: false,
+          allowNumber: false,
+        },
+      ],
+
+      "no-unused-vars": "warn",
+      semi: [2, "always"],
     },
   },
-
-  rules: {
-    "@typescript-eslint/strict-boolean-expressions": [2, {
-      allowString: false,
-      allowNumber: false,
-    }],
-
-    'no-unused-vars': 'warn',
-    semi: [2, 'always'],
-  },
-}]);
+]);

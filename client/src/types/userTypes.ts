@@ -15,9 +15,12 @@ type Address = {
     town: string;
     buildingNumber: string;
     apartmentNumber?: string;
-  }
-}
-export type UpdateInfoType = Omit<RegisterFormType, 'confirmPassword' | "password"> & {
+  };
+};
+export type UpdateInfoType = Omit<
+  RegisterFormType,
+  "confirmPassword" | "password"
+> & {
   joined?: string;
   avatar: string;
 } & Address;
@@ -34,16 +37,15 @@ export type UserDataType = {
 
 export type UsersStatisticType = {
   ACTIVE: {
-    new: number,
-    users: UserDataType[]
-  },
+    new: number;
+    users: UserDataType[];
+  };
   PENDING: {
-    new: number,
-    users: UserDataType[]
-  },
+    new: number;
+    users: UserDataType[];
+  };
   BLOCKED: {
-    new: number,
-    users: UserDataType[]
-  }
-
-}
+    new: number;
+    users: UserDataType[];
+  };
+};

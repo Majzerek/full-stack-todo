@@ -1,6 +1,5 @@
 import { ObjectId } from "mongodb";
 
-
 export type TaskDbType = {
   _id: ObjectId;
   title: string;
@@ -10,5 +9,4 @@ export type TaskDbType = {
   createAt: string;
   isDone: boolean;
   allowedUser: string;
-}
-
+};
