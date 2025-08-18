@@ -1,5 +1,4 @@
 import {
-  Card,
   Loader,
   Tabs,
   TabsContent,
@@ -8,18 +7,22 @@ import {
   Wrapper,
 } from "@/components";
 import { useUsers } from "@/hooks/useUsers";
-import { lazy, Suspense } from "react";
+import UsersList from "./components/UsersList";
+import AwaitingUsersList from "./components/AwaitingUsersList";
 
-export const Users = () => {
-  const { usersStat, setRefetch } = useUsers();
-  if (!usersStat) return null;
-
-  const UsersList = lazy(() => import("./components/usersList"));
-  const AwaitingUsers = lazy(() => import("./components/awaitingUsersList"));
-
+const Users = () => {
+  const { usersStat, setRefetch, loading } = useUsers();
+  if (!usersStat) return;
+  if (loading) {
+    return (
+      <Wrapper>
+        <h1 className="text-3xl  my-2">Users</h1>
+        <Loader />
+      </Wrapper>);
+  };
   return (
     <Wrapper>
-      <h1 className="text-2xl">Users</h1>
+      <h1 className="text-3xl my-2">Users</h1>
       <div className="flex flex-col items-center gap-6 ">
         <Tabs
           defaultValue="users-list"
@@ -30,32 +33,18 @@ export const Users = () => {
             <TabsTrigger value="awaiting-users">Awaiting Users</TabsTrigger>
           </TabsList>
           <TabsContent value="users-list">
-            <Suspense
-              fallback={
-                <Card>
-                  <Loader />
-                </Card>
-              }
-            >
-              <UsersList usersList={usersStat} />
-            </Suspense>
+            <UsersList usersList={usersStat} loading={loading} />
           </TabsContent>
           <TabsContent value="awaiting-users">
-            <Suspense
-              fallback={
-                <Card>
-                  <Loader />
-                </Card>
-              }
-            >
-              <AwaitingUsers
-                usersList={usersStat}
-                refesetRefetch={setRefetch}
-              />
-            </Suspense>
+            <AwaitingUsersList
+              usersList={usersStat}
+              refesetRefetch={setRefetch}
+            />
           </TabsContent>
         </Tabs>
       </div>
     </Wrapper>
   );
 };
+
+export default Users;

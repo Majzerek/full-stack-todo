@@ -1,11 +1,8 @@
 import cors, { CorsOptions } from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import routerAuth from "./routes/authRoutes";
-import routerUser from "./routes/userRoutes";
-import adminRouter from "./routes/adminRouter";
 import { authenticateToken } from "./middleware/jwt";
-import routerAuthTask from "./routes/authTaskRouter";
+import router from "./routes/router";
 
 dotenv.config();
 
@@ -29,15 +26,17 @@ const corsOptions: CorsOptions = {
 
 app.use(cors(corsOptions));
 
+const useRoutes = router;
+
 const serverStart = async () => {
   try {
-    app.use("/", routerAuth);
+    app.use("/", useRoutes);
 
-    app.use("/user", routerUser);
+    app.use("/user", useRoutes);
 
-    app.use("/users", adminRouter);
+    app.use("/users", useRoutes);
 
-    app.use("/task", authenticateToken, routerAuthTask);
+    app.use("/task", authenticateToken, useRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);

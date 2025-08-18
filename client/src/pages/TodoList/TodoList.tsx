@@ -20,7 +20,8 @@ import axios from "axios";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
-export const TodoList = () => {
+const ToDoList = () => {
+
   const { userTasks, setRefetch } = useUserTasks();
   const [loading, setLoading] = useState(false);
   const { showErrorAlert, showSuccessAlert } = useAlertContext();
@@ -132,3 +133,5 @@ export const TodoList = () => {
     </Wrapper>
   );
 };
+
+export default ToDoList;

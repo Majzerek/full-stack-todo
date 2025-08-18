@@ -32,11 +32,9 @@ export const registerUser = async (req: Request, res: Response) => {
     };
 
     await usersCollection.insertOne(registerData);
-    return res
-      .status(200)
-      .send({
-        message: `${registerData.name.toUpperCase()} successfully created`,
-      });
+    return res.status(200).send({
+      message: `${registerData.name.toUpperCase()} successfully created`,
+    });
   } catch (err) {
     console.error(err);
     return res.status(500).send({ message: "Internal server error" });
@@ -65,15 +63,13 @@ export const loginUser = async (req: Request, res: Response) => {
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_TOKEN!);
 
-    return res
-      .status(200)
-      .send({
-        token,
-        userId: user._id,
-        userName: user.name,
-        userStatus: user.status,
-        avatar: user?.avatar,
-      });
+    return res.status(200).send({
+      token,
+      userId: user._id,
+      userName: user.name,
+      userStatus: user.status,
+      avatar: user?.avatar,
+    });
   } catch (err) {
     console.error(err);
     return res.send({ message: "Something went wrong." });

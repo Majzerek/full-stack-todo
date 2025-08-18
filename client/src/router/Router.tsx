@@ -1,19 +1,21 @@
-import { NavbarWrapper } from "@/components";
+import {  NavbarWrapper  } from "@/components";
 import {
   Dashboard,
   Login,
   NewTask,
   NotFoundPage,
-  Profile,
   Register,
   WaitForApprove,
   AccessBlocked,
-  Users,
-  TodoList,
 } from "@/pages";
+import Users from "@/pages/Admin/Users";
 import { AdminRoute } from "@/utils/AdmintRoute";
 import { ProtectedRoutes } from "@/utils/ProtectedRoutes";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+
+const Profile = lazy(() => import("@/pages/Profile/Profile"));
+const ToDoList = lazy(() => import("@/pages/TodoList/TodoList"));
 
 export const router = createBrowserRouter([
   {
@@ -43,13 +45,19 @@ export const router = createBrowserRouter([
           },
           {
             path: "/to-do-list",
-            element: <TodoList />,
+            element: <ToDoList />,
           },
+
           {
             path: "/users",
             element: <AdminRoute />,
-            children: [{ path: "/users", element: <Users /> }],
+            children: [
+              {
+                path: "/users", 
+                element: <Users />,
+              }],
           },
+
         ],
       },
     ],

@@ -31,6 +31,7 @@ const AwaitingUsersList = ({
   const { showErrorAlert, showSuccessAlert } = useAlertContext();
 
   const submitDecision = async (id: string, status: string) => {
+
     setIsLoading(true);
     await axios
       .post(`http://localhost:4040/users/update-status/${id}`, { status })
@@ -42,11 +43,16 @@ const AwaitingUsersList = ({
       .catch((err) => {
         setIsLoading(false);
         console.log(err);
-        showErrorAlert(err.data.message);
+        showErrorAlert(err.response.data.message);
       });
   };
+
   return (
     <Card className="translate-all shadow-md shadow-sidebar-primary">
+      {isLoading ? (
+               <Loader />
+         
+        ) : 
       <Table>
         <TableCaption>A list of users.</TableCaption>
         <TableHeader>
@@ -58,9 +64,7 @@ const AwaitingUsersList = ({
             <TableHead className="text-right">Decision</TableHead>
           </TableRow>
         </TableHeader>
-        {isLoading ? (
-          <Loader />
-        ) : (
+        
           <TableBody>
             {usersList.PENDING.users.map((user, index) => (
               <TableRow key={user.id}>
@@ -89,7 +93,7 @@ const AwaitingUsersList = ({
               </TableRow>
             ))}
           </TableBody>
-        )}
+        
         <TableFooter>
           <TableRow>
             <TableCell colSpan={4}>Total</TableCell>
@@ -99,6 +103,7 @@ const AwaitingUsersList = ({
           </TableRow>
         </TableFooter>
       </Table>
+      }
     </Card>
   );
 };

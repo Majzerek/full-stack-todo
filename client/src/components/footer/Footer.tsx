@@ -1,4 +1,4 @@
-import { CustomLink } from "../customLink";
+import { CustomLink } from "../CustomLink";
 
 export const Footer = () => {
   const year = new Date().getFullYear();

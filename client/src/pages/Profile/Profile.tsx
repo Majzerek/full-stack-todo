@@ -1,5 +1,4 @@
 import {
-  Card,
   Loader,
   Tabs,
   TabsContent,
@@ -8,22 +7,18 @@ import {
   Wrapper,
 } from "@/components";
 import { useUserData } from "@/hooks/useUserData";
-import { lazy, Suspense } from "react";
+import Account from "./components/account";
+import UpdateInfo from "./components/updateInfo";
 
-export const Profile = () => {
-  const { userName, userInfo, loading, userID } = useUserData();
+const Profile = () => {
+  const { userName, userInfo,  userID, loading } = useUserData();
 
-  if (loading)
-    return (
-      <Wrapper>
-        <Loader />
-      </Wrapper>
-    );
 
   if (!userInfo || !userName) return;
-
-  const Account = lazy(() => import("./components/account"));
-  const Update = lazy(() => import("./components/updateInfo"));
+  
+  if(loading){
+    return(<Wrapper><Loader /></Wrapper>);
+  };
 
   return (
     <Wrapper>
@@ -43,29 +38,14 @@ export const Profile = () => {
             <TabsTrigger value="update">Update Profil</TabsTrigger>
           </TabsList>
           <TabsContent value="account">
-            <Suspense
-              fallback={
-                <Card>
-                  <Loader />
-                </Card>
-              }
-            >
-              <Account userInfo={userInfo} />
-            </Suspense>
+            <Account userInfo={userInfo} />
           </TabsContent>
           <TabsContent value="update">
-            <Suspense
-              fallback={
-                <Card>
-                  <Loader />
-                </Card>
-              }
-            >
-              <Update userInfo={userInfo} userID={userID} />
-            </Suspense>
+            <UpdateInfo userInfo={userInfo} userID={userID} />
           </TabsContent>
         </Tabs>
       </div>
     </Wrapper>
   );
 };
+export default Profile;

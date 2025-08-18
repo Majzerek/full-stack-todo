@@ -20,9 +20,9 @@ export * from "./ui/accordion";
 //component
 export * from "./navBar/NavBar";
 export * from "./navBar/NavBarWrapper";
-export * from "./wrapper";
+export * from "./Wrapper";
 export * from "./loader/Loader";
-export * from "./errorMsg";
+export * from "./ErrorMsg";
 export * from "./footer/Footer";
-export * from "./customLink";
+export * from "./CustomLink";
 // export * from './cardTabs/CardTabs'

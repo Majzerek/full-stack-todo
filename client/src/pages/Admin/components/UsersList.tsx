@@ -1,6 +1,7 @@
 import {
   Card,
   Label,
+  Loader,
   Select,
   SelectContent,
   SelectGroup,
@@ -25,10 +26,15 @@ import React from "react";
 
 type UserListProps = {
   usersList: UsersStatisticType;
+  loading: boolean;
 };
 
-const UsersList = ({ usersList }: UserListProps) => {
+const UsersList = ({ usersList,loading }: UserListProps) => {
   const [status, setStatus] = React.useState<string>(StatusEnum.ACTIVE);
+
+  if(loading) {
+    return (<Card><Loader /></Card>);
+  };
 
   return (
     <Card className="translate-all shadow-md shadow-sidebar-primary">
